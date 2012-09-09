@@ -8,15 +8,20 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import <RestKit/RestKit.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [RKClient clientWithBaseURLString:@"http://evincel.com/"];
+    [RKClient sharedClient].requestQueue.requestTimeout = 10;
+    [RKClient sharedClient].cachePolicy = RKRequestCachePolicyNone;
+    [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = [HomeViewController new];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

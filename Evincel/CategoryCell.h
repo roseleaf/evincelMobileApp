@@ -1,5 +1,5 @@
 //
-//  EvincelTableViewCell.h
+//  CategoryCell.h
 //  Evincel
 //
 //  Created by Rose CW on 9/8/12.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryCell : UITableViewCell {
+@interface CategoryCell : UITableViewCell
+{
     UILabel* primaryLabel;
     UILabel* subtextLabel;
     UILabel* countLabel;
@@ -21,4 +22,3 @@
 @property(nonatomic,retain)UIImageView *bgImageView;
 @property(nonatomic,retain)UIImageView *topicImageView;
 @end
-
