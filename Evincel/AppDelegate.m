@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import <RestKit/RestKit.h>
+#import "WebsiteStore.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,13 @@
     [RKClient sharedClient].requestQueue.requestTimeout = 10;
     [RKClient sharedClient].cachePolicy = RKRequestCachePolicyNone;
     [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone;
+    
+    
+    [WebsiteStore setupMapping];
+    [WebsiteStore loadAllWithBlock:^(NSArray *websites) {
+        NSLog(@"These are all the websites:\n%@", websites);
+    }];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = [HomeViewController new];

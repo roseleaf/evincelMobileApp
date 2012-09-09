@@ -141,7 +141,7 @@
     UIImage *image = [[UIImage alloc] initWithData:srcData];
     
     cell.topicImageView.image = image;
-//    [UIImage imageNamed:@"circles.png"];
+    [UIImage imageNamed:@"circles.png"];
 
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
@@ -161,6 +161,8 @@
 
 //RestKit Client Grabs the List of Categories:
 -(void) categoryFetcher {
+//    NSString* model = @"/websites.json?category_id=2";
+//    [[RKClient sharedClient] get:model delegate:self];
 
     [[RKClient sharedClient] get:@"/categories.json" delegate:self];
 }

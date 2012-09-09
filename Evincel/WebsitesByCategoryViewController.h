@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Website.h"
+#import <RestKit/RestKit.h>
 
-@interface WebsitesByCategoryViewController : UITableViewController
+@interface WebsitesByCategoryViewController : UITableViewController <RKRequestDelegate>
+
 @property (strong) NSDictionary* category;
 -(void)websiteByCategoryFetcher;
 -(id)initWithCategory:(NSDictionary*)category;
+- (void)request:(RKRequest*)request requestDidLoadResponse:(RKResponse*)response;
 @end

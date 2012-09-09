@@ -8,6 +8,7 @@
 
 #import "WebsitesByCategoryViewController.h"
 #import "CategoryCell.h"
+#import "WebsiteStore.h"
 #import <RestKit/RestKit.h>
 
 
@@ -49,8 +50,18 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self websiteByCategoryFetcher];
-    
+//    websitesArray = [NSMutableArray new];
+
+//    [self websiteByCategoryFetcher];
+//    Website* site = [Website new];
+    [WebsiteStore loadAllWithBlock:(void(^)(NSArray *websites))^{
+        websitesArray =  [[NSArray alloc]initWithObjects:@"?", @"!", nil];
+    }];
+    websitesArray =  [[NSArray alloc]initWithObjects:@"?", @"!", nil];
+//    [site websiteByCategoryFetcher];
+//    websitesArray = [Website websites];
+    NSLog(@"%@", websitesArray);
+    NSLog(@"something jees");
     [self.tableView reloadData];
 }
 
@@ -65,7 +76,6 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
-    websitesArray = [NSMutableArray new];
 
 //    [self websiteByCategoryFetcher];
 //    [self.tableView reloadData];
@@ -122,6 +132,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     int count = [websitesArray count];
     return count;
+    NSLog(@"%d",count);
+    NSLog(@"wwwwwwwwwwwww");
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -136,11 +148,11 @@
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
 
 
-    cell.primaryLabel.text = [[websitesArray objectAtIndex:indexPath.row] valueForKey:@"page_title"];
+    cell.primaryLabel.text = @"?"; //[[websitesArray objectAtIndex:indexPath.row] valueForKey:@"page_title"];
     
-    cell.subtextLabel.text = [[websitesArray objectAtIndex:indexPath.row]valueForKey:@"url"];
+//    cell.subtextLabel.text = [[websitesArray objectAtIndex:indexPath.row]valueForKey:@"url"];
     //fin in cell with data..
-    
+    cell.subtextLabel.text = [websitesArray objectAtIndex:indexPath.row];
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
@@ -155,14 +167,22 @@
 }
 
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 }
 
-
 -(void)dismissToCategories{
     [self dismissModalViewControllerAnimated:YES];
 }
+
+
+
+
+
+
+
+
 
 
 //RestKit Client Grabs the List of Categories:

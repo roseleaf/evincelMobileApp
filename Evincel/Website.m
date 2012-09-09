@@ -30,11 +30,16 @@
 
 -(void) websiteByCategoryFetcher {
 
-    NSString* model = @"/websites.json";
-    [[RKClient sharedClient] get:model delegate:self];
+//    NSString* model = @"/websites.json";
+
+    [[RKClient sharedClient] get:@"/websites/category/2.json" delegate:self];
     
 }
 
+-(void) request:(RKRequest *)request didFailLoadWithError:(NSError *)error{
+    NSLog(@"%@", error);
+
+}
 
 
 - (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response

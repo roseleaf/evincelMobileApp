@@ -15,5 +15,9 @@
 }
 
 + (WebsiteStore *)defaultStore;
-- (NSArray *)websites;
+- (NSMutableArray *)websites;
+
+
++(void)setupMapping;
++(void)loadAllWithBlock:(void(^)(NSArray *websites))block;
 @end
