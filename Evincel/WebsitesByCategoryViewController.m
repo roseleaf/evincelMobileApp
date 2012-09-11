@@ -31,49 +31,24 @@
     self = [super init];
     if (self) {
         self.category = category;
-        self.tableView = [[UITableView alloc]init];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
     }
     return self;
 }
 
 
-
--(void)viewWillAppear:(BOOL)animated{
- //   WebsiteStore* store = [WebsiteStore new];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//        [store websiteByCategoryFetcherWithID:[self.category objectForKey:@"id"]];
-//        
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-//            self.websitesArray = store.websites;
-//            
-//        });
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadData];
-//            
-//        });
-//        
-//    });
-
-    
-    websitesArray = [NSMutableArray new];
-    [self websiteByCategoryFetcher];
-}
-
-
--(void)loadView{
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"id"] withBlock:^{
+        [self.tableView reloadData];
+    }];
     
+    self.tableView = [[UITableView alloc]init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,6 +58,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 100;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     self.header = [UIImageView new];
@@ -127,10 +103,12 @@
 
 //UITableView Delegate Methods:
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int count = [websitesArray count];
+    id catId = [self.category valueForKey:@"id"];
+    NSArray* array = [[[WebsiteStore sharedStore]allWebsites] objectForKey:catId];
+    
+    int count = [array count];
     return count;
-    NSLog(@"%d",count);
-    NSLog(@"wwwwwwwwwwwww");
+    NSLog(@"!!!! %d", count);
 }
 
 
@@ -145,27 +123,23 @@
     UIImage* rowBackground = [UIImage imageNamed:@"middleRow.png"];
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
 
-
-    Website* currentSite = [websitesArray objectAtIndex:indexPath.row];
     
-    if ([currentSite valueForKey:@"page_title"]!=NULL) {
-        cell.primaryLabel.text = [currentSite valueForKey:@"page_title"];
+    id catID = [self.category valueForKey:@"id"];
+    NSArray* category = [[[WebsiteStore sharedStore]allWebsites]objectForKey:catID];
+                         
+                         
+    Website* currentSite = [category objectAtIndex:indexPath.row];
+    
+    if (currentSite.page_title!=NULL) {
+        cell.primaryLabel.text = currentSite.page_title;
     } else {
-        cell.primaryLabel.text = [currentSite valueForKey:@"redirect_url"];
+        cell.primaryLabel.text = currentSite.url;
     }
     
         
-    cell.subtextLabel.text = [currentSite valueForKey:@"redirect_url"];
+    cell.subtextLabel.text = currentSite.url;
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-                   ^{
-                       
-                       cell.faviconView.image = [self hppleParseWithLink:[currentSite valueForKey:@"url"]];
-                       
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           [self.view setNeedsDisplay];}
-                                      );
-                   });
+    cell.faviconView.image = currentSite.image;
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];

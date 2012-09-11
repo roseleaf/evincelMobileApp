@@ -10,14 +10,14 @@
 
 NSMutableArray* WEBSITES;
 
-@interface Website : NSDictionary <RKRequestDelegate> {
+@interface Website : NSObject <RKRequestDelegate> {
 }
 -(void) websiteByCategoryFetcher;
 
 @property (strong) NSString* page_title;
 @property (strong) NSString* url;
 @property (strong) UIImage* image;
-@property (strong) NSString* category_id;
+@property int category_id;
 @property (strong) NSMutableArray* reviews;
 -(UIImage*) hppleParseWithLink:(NSURL*)url;
 +(NSMutableArray*)websites;

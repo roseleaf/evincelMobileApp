@@ -10,17 +10,21 @@
 #import "Website.h"
 #import <RestKit/RestKit.h>
 
-NSMutableArray* WEBSITES;
+//NSMutableArray* WEBSITES;
 
 @interface WebsiteStore : NSObject <RKRequestDelegate>
 {
-    NSMutableArray *websites;
+    NSMutableDictionary *allWebsites;
 }
 
-//+ (WebsiteStore *)defaultStore;
+
++ (WebsiteStore *)sharedStore;
 @property (strong) NSMutableArray *websites;
--(NSMutableArray*)websiteList;
--(void) websiteByCategoryFetcherWithID:(id)catId;
+
+-(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))blovk;
+-(NSMutableDictionary*)allWebsites;
+
+
 //+(void)setupMapping;
 //+(void)loadAllWithBlock:(void(^)(NSArray *websites))block;
 @end

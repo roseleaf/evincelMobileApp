@@ -71,7 +71,7 @@
     searchButton.frame = CGRectMake(56.0, 200.0, 200.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonLong.png"];
     [searchButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [searchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.searchButton = searchButton;
     [self.view addSubview:self.searchButton];
 }
@@ -82,7 +82,7 @@
     browseButton.frame = CGRectMake(56.0, 250.0, 200.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonLong.png"];
     [browseButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [browseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.browseButton = browseButton;
     [self.view addSubview:self.browseButton];
 }
@@ -93,7 +93,7 @@
     signInButton.frame = CGRectMake(56.0, 300.0, 200.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonLong.png"];
     [signInButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [signInButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.signInButton = signInButton;
     [self.view addSubview:self.signInButton];
 }
