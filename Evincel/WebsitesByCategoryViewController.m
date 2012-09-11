@@ -7,12 +7,14 @@
 //
 
 #import "WebsitesByCategoryViewController.h"
+#import "WebsiteViewController.h"
 #import "CategoryCell.h"
 #import "WebsiteStore.h"
+#import "TFHpple.h"
 #import <RestKit/RestKit.h>
 
 
-@interface WebsitesByCategoryViewController () <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, RKRequestDelegate, NSXMLParserDelegate> {
+@interface WebsitesByCategoryViewController () <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, UINavigationControllerDelegate, RKRequestDelegate, NSXMLParserDelegate> {
     NSMutableArray* websitesArray;
 }
 
@@ -32,6 +34,7 @@
         self.tableView = [[UITableView alloc]init];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+
         // Custom initialization
     }
     return self;
@@ -50,16 +53,13 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-//    websitesArray = [NSMutableArray new];
+    websitesArray = [NSMutableArray new];
 
-//    [self websiteByCategoryFetcher];
-//    Website* site = [Website new];
+    [self websiteByCategoryFetcher];
     [WebsiteStore loadAllWithBlock:(void(^)(NSArray *websites))^{
-        websitesArray =  [[NSArray alloc]initWithObjects:@"?", @"!", nil];
+
     }];
-    websitesArray =  [[NSArray alloc]initWithObjects:@"?", @"!", nil];
-//    [site websiteByCategoryFetcher];
-//    websitesArray = [Website websites];
+
     NSLog(@"%@", websitesArray);
     NSLog(@"something jees");
     [self.tableView reloadData];
@@ -77,12 +77,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
 
-//    [self websiteByCategoryFetcher];
-//    [self.tableView reloadData];
-
-
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 100;
@@ -95,7 +94,8 @@
     [self.view addSubview:self.header];
     UILabel *headerLabel =
     [[UILabel alloc]
-     initWithFrame:CGRectMake(100, 20, 300, 40)];
+     initWithFrame:CGRectMake(10, 20, 300, 40)];
+    headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.text = [self.category valueForKey:@"name"];
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
     headerLabel.shadowColor = [UIColor brownColor];
@@ -136,6 +136,7 @@
     NSLog(@"wwwwwwwwwwwww");
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CellIdentifier = @"Cell";
@@ -148,11 +149,27 @@
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
 
 
-    cell.primaryLabel.text = @"?"; //[[websitesArray objectAtIndex:indexPath.row] valueForKey:@"page_title"];
+    Website* currentSite = [websitesArray objectAtIndex:indexPath.row];
     
-//    cell.subtextLabel.text = [[websitesArray objectAtIndex:indexPath.row]valueForKey:@"url"];
-    //fin in cell with data..
-    cell.subtextLabel.text = [websitesArray objectAtIndex:indexPath.row];
+    if ([currentSite valueForKey:@"page_title"]!=NULL) {
+        cell.primaryLabel.text = [currentSite valueForKey:@"page_title"];
+    } else {
+        cell.primaryLabel.text = [currentSite valueForKey:@"redirect_url"];
+    }
+    currentSite.url = [currentSite valueForKey:@"redirect_url"];
+    
+        
+    cell.subtextLabel.text = [currentSite valueForKey:@"redirect_url"];
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                   ^{
+                       
+                       cell.faviconView.image = [self hppleParseWithLink:[currentSite valueForKey:@"url"]];
+                       
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           [self.view setNeedsDisplay];}
+                                      );
+                   });
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
@@ -169,7 +186,12 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    Website* currentSite = [websitesArray objectAtIndex:indexPath.row];
+    WebsiteViewController* websiteView = [WebsiteViewController new];
+    websiteView.website = currentSite;
+//    UINavigationController* nav = [[UINavigationController alloc]init];
+    [self.navigationController pushViewController:websiteView animated:YES];
+    
 }
 
 -(void)dismissToCategories{
@@ -187,20 +209,17 @@
 
 //RestKit Client Grabs the List of Categories:
 -(void) websiteByCategoryFetcher {
-    RKClient *client = [RKClient clientWithBaseURLString:@"http://evincel.com/"];
-    
-    client.requestQueue.requestTimeout = 10;
-    client.cachePolicy = RKRequestCachePolicyNone;
-    client.authenticationType = RKRequestAuthenticationTypeNone;
-    
-    
-    NSString* model = @"/websites.json?category_id=";
-
-    id params = [self.category valueForKey:@"id"];
-    NSString* getResourcePath = [model stringByAppendingFormat:@"%@", params];
- 
-    [client get:getResourcePath delegate:self];
-
+//    NSString* model = @"/websites/category/";
+//
+//    id params = [self.category objectForKey:@"id"];
+//    NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
+//    [[RKClient sharedClient] get:getResourcePath delegate:self];
+    NSString* model = @"/websites/category/";
+    id params = [self.category objectForKey:@"id"];
+    NSString* resourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:resourcePath usingBlock:^(RKObjectLoader *loader) {
+        loader.onDidLoadObjects = block;
+    }];
 
 }
 
@@ -209,8 +228,6 @@
 {
     if (request.method == RKRequestMethodGET) {
         NSArray* parsedResponse = [response parsedBody:nil];
-        NSLog(@"%@", parsedResponse);
-        
         
         for (NSDictionary* website in parsedResponse){
             [websitesArray addObject:website];
@@ -219,6 +236,36 @@
         [self.tableView reloadData];
     }
 }
+
+
+//hpple grabs favicon
+-(UIImage*) hppleParseWithLink:(NSURL *)url {
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    TFHpple *doc  = [[TFHpple alloc] initWithHTMLData:data];
+    
+    NSArray *elements  = [doc searchWithXPathQuery:@"//link[@rel='icon']"]; //grab favicon
+    
+    if(![elements count]>=1){
+        elements  = [doc searchWithXPathQuery:@"//link[@rel='shortcut icon']"]; //grab favicon
+    }
+    if([elements count]>=1){
+        
+        TFHppleElement *element = [elements objectAtIndex:0];
+        NSString *srcString = [element objectForKey:@"href"]; //grab favicon src
+        
+        
+        NSURL *url = [NSURL URLWithString:srcString];
+        NSData *srcData = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [[UIImage alloc] initWithData:srcData];
+        
+        NSLog(@"Element <src> parsed: %@",srcString);
+        NSLog(@"%@", image);
+        return image;
+    }
+    
+    return nil;
+}
+
 
 
 

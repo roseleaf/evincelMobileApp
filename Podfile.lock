@@ -18,6 +18,12 @@ PODS:
     - LibComponentLogging-NSLog (>= 1.0.4)
     - SOCKit
     - cocoa-oauth
+  - RestKit/ObjectMapping (0.10.2):
+    - ISO8601DateFormatter (>= 0.6)
+    - RestKit/Network
+    - RestKit/ObjectMapping/CoreData (= 0.10.2)
+    - RestKit/ObjectMapping/JSON (= 0.10.2)
+    - RestKit/ObjectMapping/XML (= 0.10.2)
   - RestKit/ObjectMapping/CoreData (0.10.2):
     - ISO8601DateFormatter (>= 0.6)
     - RestKit/Network
@@ -25,12 +31,22 @@ PODS:
     - ISO8601DateFormatter (>= 0.6)
     - JSONKit (>= 1.5pre)
     - RestKit/Network
+  - RestKit/ObjectMapping/XML (0.10.2):
+    - ISO8601DateFormatter (>= 0.6)
+    - RestKit/Network
+    - XMLReader
   - RestKit/UI (0.10.2)
   - SOCKit (1.0)
+  - XMLReader (0.0.2)
   - cocoa-oauth (0.0.1):
     - NSData+Base64 (~> 1.0)
   - hpple (0.1.0)
 
 DEPENDENCIES:
   - RestKit
+  - RestKit/Network
+  - RestKit/ObjectMapping
+  - RestKit/ObjectMapping/CoreData
+  - RestKit/ObjectMapping/JSON
+  - RestKit/UI
   - hpple

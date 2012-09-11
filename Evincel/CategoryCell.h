@@ -13,7 +13,7 @@
     UILabel* primaryLabel;
     UILabel* subtextLabel;
     UILabel* countLabel;
-    UIImageView* bgImageView;
+    UIImageView* faviconView;
     UIImageView* topicImageView;
 }
 @property(nonatomic,retain)UILabel* primaryLabel;
@@ -21,4 +21,6 @@
 @property(nonatomic,retain)UILabel* countLabel;
 @property(nonatomic,retain)UIImageView *bgImageView;
 @property(nonatomic,retain)UIImageView *topicImageView;
+@property(nonatomic,retain)UIImageView *faviconView;
+
 @end

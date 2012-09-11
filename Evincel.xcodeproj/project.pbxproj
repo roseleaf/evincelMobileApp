@@ -21,7 +21,6 @@
 		965A609215FAA529000DF824 /* buttonShort.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608C15FAA529000DF824 /* buttonShort.png */; };
 		965A609315FAA529000DF824 /* circles.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608D15FAA529000DF824 /* circles.png */; };
 		965A609515FAA529000DF824 /* specificHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608F15FAA529000DF824 /* specificHeader.png */; };
-		965A609A15FAA710000DF824 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A609915FAA710000DF824 /* header.png */; };
 		965A609C15FAA8C3000DF824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A609B15FAA8C3000DF824 /* QuartzCore.framework */; };
 		965A60A715FAB486000DF824 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A60A615FAB486000DF824 /* SearchViewController.m */; };
 		965A60AD15FAB4D2000DF824 /* CategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A60AC15FAB4D2000DF824 /* CategoriesTableViewController.m */; };
@@ -31,8 +30,11 @@
 		965A60C115FAE009000DF824 /* tableViewSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A60C015FAE009000DF824 /* tableViewSmaller.png */; };
 		965A60D315FBACF2000DF824 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A60D215FBACF2000DF824 /* CategoryCell.m */; };
 		965A60DD15FBBD53000DF824 /* WebsitesByCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */; };
+		96BEE85915FE7CCC008E74E7 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96BEE85815FE7CCC008E74E7 /* header@2x.png */; };
+		96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
 		96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F1215FC492000EC8E0C /* WebsiteStore.m */; };
+		96E9500D15FE57E900EC8E0C /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E9500C15FE57E900EC8E0C /* header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +58,6 @@
 		965A608C15FAA529000DF824 /* buttonShort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonShort.png; sourceTree = "<group>"; };
 		965A608D15FAA529000DF824 /* circles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circles.png; sourceTree = "<group>"; };
 		965A608F15FAA529000DF824 /* specificHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specificHeader.png; sourceTree = "<group>"; };
-		965A609915FAA710000DF824 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 		965A609B15FAA8C3000DF824 /* QuartzCore.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		965A60A515FAB486000DF824 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ../SearchViewController.h; sourceTree = "<group>"; };
 		965A60A615FAB486000DF824 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ../SearchViewController.m; sourceTree = "<group>"; };
@@ -70,10 +71,14 @@
 		965A60D215FBACF2000DF824 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		965A60DB15FBBD53000DF824 /* WebsitesByCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsitesByCategoryViewController.h; sourceTree = "<group>"; };
 		965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsitesByCategoryViewController.m; sourceTree = "<group>"; };
+		96BEE85815FE7CCC008E74E7 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
+		96BEE86215FEA2E2008E74E7 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteViewController.h; sourceTree = "<group>"; };
+		96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteViewController.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
 		96E94F1115FC491F00EC8E0C /* WebsiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteStore.h; sourceTree = "<group>"; };
 		96E94F1215FC492000EC8E0C /* WebsiteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteStore.m; sourceTree = "<group>"; };
+		96E9500C15FE57E900EC8E0C /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header.png; path = ../../../../header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +143,8 @@
 				965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */,
 				965A60D115FBACF2000DF824 /* CategoryCell.h */,
 				965A60D215FBACF2000DF824 /* CategoryCell.m */,
+				96BEE86215FEA2E2008E74E7 /* WebsiteViewController.h */,
+				96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */,
 				965A60A515FAB486000DF824 /* SearchViewController.h */,
 				965A60A615FAB486000DF824 /* SearchViewController.m */,
 				965A607C15FAA00E000DF824 /* AppDelegate.h */,
@@ -150,6 +157,7 @@
 		965A607415FAA00E000DF824 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96BEE85815FE7CCC008E74E7 /* header@2x.png */,
 				965A608915FAA529000DF824 /* evincelAssets */,
 				965A607515FAA00E000DF824 /* Evincel-Info.plist */,
 				965A607615FAA00E000DF824 /* InfoPlist.strings */,
@@ -165,9 +173,9 @@
 				965A608A15FAA529000DF824 /* background.png */,
 				965A608B15FAA529000DF824 /* buttonLong.png */,
 				965A60BE15FADF96000DF824 /* tableHeader@2x.png */,
+				96E9500C15FE57E900EC8E0C /* header.png */,
 				965A608C15FAA529000DF824 /* buttonShort.png */,
 				965A60C015FAE009000DF824 /* tableViewSmaller.png */,
-				965A609915FAA710000DF824 /* header.png */,
 				965A60AE15FABC2E000DF824 /* middleRow.png */,
 				965A60BC15FADCD1000DF824 /* pressedRow.png */,
 				965A608D15FAA529000DF824 /* circles.png */,
@@ -235,11 +243,12 @@
 				965A609215FAA529000DF824 /* buttonShort.png in Resources */,
 				965A609315FAA529000DF824 /* circles.png in Resources */,
 				965A609515FAA529000DF824 /* specificHeader.png in Resources */,
-				965A609A15FAA710000DF824 /* header.png in Resources */,
 				965A60AF15FABC2E000DF824 /* middleRow.png in Resources */,
 				965A60BD15FADCD1000DF824 /* pressedRow.png in Resources */,
 				965A60BF15FADF96000DF824 /* tableHeader@2x.png in Resources */,
 				965A60C115FAE009000DF824 /* tableViewSmaller.png in Resources */,
+				96E9500D15FE57E900EC8E0C /* header.png in Resources */,
+				96BEE85915FE7CCC008E74E7 /* header@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +285,7 @@
 				965A60DD15FBBD53000DF824 /* WebsitesByCategoryViewController.m in Sources */,
 				96E94F1015FC3D1700EC8E0C /* Website.m in Sources */,
 				96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */,
+				96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

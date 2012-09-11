@@ -20,51 +20,67 @@
     }
     return self;
 }
+//
+//
+//
+//+(NSMutableArray*)websites{
+//    return WEBSITES;
+//}
+//
+//
+//-(void) websiteByCategoryFetcher {
+//    [[RKClient sharedClient] get:@"/websites/category/2.json" delegate:self];
+//}
+//
+//
+//-(void) request:(RKRequest *)request didFailLoadWithError:(NSError *)error{
+//    NSLog(@"%@", error);
+//}
+//
+//
+//- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+//{
+//    if (request.method == RKRequestMethodGET) {
+//        NSArray* parsedResponse = [response parsedBody:nil];
+//        NSLog(@"%@", parsedResponse);
+//        
+//        
+//        for (NSDictionary* websiteObject in parsedResponse){
+//            Website* site = [Website new];
+//            site.page_title = [websiteObject valueForKey:@"page_title"];
+//            site.url = [websiteObject valueForKey:@"url"];
+//            site.category_id = [websiteObject valueForKey:@"category_id"];
+//            site.image = [self hppleParseWithLink:self.url];
+//            [WEBSITES addObject:site];
+//        }
+//    }
+//}
+//
+//
+//
+//-(void)performBlockWithImages:(void (^) (UIImage*)) block{
+//    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+//                   ^{
+//                       // if there isn't already an image:
+//                       if (!self.image) {
+//                           // do hpple parsing
+////                           self.image = [self hppleParse];//image returns from hpple
+//                           if (!self.image) {
+//                               self.image = [UIImage imageNamed:[NSString stringWithFormat:@"default.png"]];
+//                           }
+//                       }
+//                       
+//                       dispatch_async(dispatch_get_main_queue(), ^{
+//                           
+//                           //update view: add images to table view
+//                           block(self.image);
+//                       });
+//                       
+//                   });
+//}
 
-
-
-+(NSMutableArray*)websites{
-    return WEBSITES;
-}
-
-
--(void) websiteByCategoryFetcher {
-
-//    NSString* model = @"/websites.json";
-
-    [[RKClient sharedClient] get:@"/websites/category/2.json" delegate:self];
-    
-}
-
--(void) request:(RKRequest *)request didFailLoadWithError:(NSError *)error{
-    NSLog(@"%@", error);
-
-}
-
-
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{
-    if (request.method == RKRequestMethodGET) {
-        NSArray* parsedResponse = [response parsedBody:nil];
-        NSLog(@"%@", parsedResponse);
-        
-        
-        for (NSDictionary* websiteObject in parsedResponse){
-            Website* site = [Website new];
-            site.page_title = [websiteObject valueForKey:@"page_title"];
-            site.url = [websiteObject valueForKey:@"url"];
-            site.category_id = [websiteObject valueForKey:@"category_id"];
-            site.image = [self hppleParseWithLink:self.url];
-            [WEBSITES addObject:site];
-        }
-    }
-}
-
-
-
-
--(UIImage*) hppleParseWithLink:(NSString*)url {
-    NSData  *data      = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+-(UIImage*) hppleParseWithLink:(NSURL *)url {
+    NSData  *data      = [NSData dataWithContentsOfURL:url];
     TFHpple *doc       = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *elements  = [doc searchWithXPathQuery:@"//link[@rel='icon']"]; //grab favicon
     

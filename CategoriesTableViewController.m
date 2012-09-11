@@ -36,7 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.navigationController.navigationBarHidden = YES;
+ 
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -61,8 +62,9 @@
     [self.view addSubview:self.header];
     UILabel *headerLabel =
     [[UILabel alloc]
-     initWithFrame:CGRectMake(100, 20, 300, 40)];
+     initWithFrame:CGRectMake(10, 20, 300, 40)];
     headerLabel.text = NSLocalizedString(@"Categories", @"");
+    headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
     headerLabel.shadowColor = [UIColor brownColor];
     headerLabel.shadowOffset = CGSizeMake(0, 1);

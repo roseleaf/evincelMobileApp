@@ -16,13 +16,15 @@
         self.primaryLabel = [[UILabel alloc]init];
         self.primaryLabel.textAlignment = UITextAlignmentLeft;
         self.primaryLabel.font = [UIFont systemFontOfSize:24];
-//        self.subtextLabel = [[UILabel alloc]init];
-//        self.subtextLabel.textAlignment = UITextAlignmentLeft;
-//        self.subtextLabel.font = [UIFont systemFontOfSize:8];
+        self.subtextLabel = [[UILabel alloc]init];
+        self.subtextLabel.textAlignment = UITextAlignmentLeft;
+        self.subtextLabel.font = [UIFont systemFontOfSize:14];
 //        self.countLabel = [[UILabel alloc]init];
 //        self.countLabel.textAlignment = UITextAlignmentLeft;
         self.countLabel.font = [UIFont systemFontOfSize:8];
         self.topicImageView = [[UIImageView alloc]init];
+        self.faviconView = [[UIImageView alloc]init];
+        [self.contentView addSubview:self.faviconView];
         [self.contentView addSubview:self.primaryLabel];
         [self.contentView addSubview:self.subtextLabel];
         [self.contentView addSubview:self.countLabel];
@@ -41,12 +43,17 @@
     
     frame= CGRectMake(boundsX+10 ,10, 80, 80);
     self.topicImageView.frame = frame;
+    frame= CGRectMake(15, 25, 40, 40);
+    self.faviconView.frame = frame;
     
     frame= CGRectMake(boundsX+100 ,10, 200, 35);
     self.primaryLabel.frame = frame;
     self.primaryLabel.backgroundColor = [UIColor clearColor];
-    self.primaryLabel.textColor = [UIColor blackColor];
-    
+    self.primaryLabel.textColor = [UIColor brownColor];
+    frame= CGRectMake(boundsX+100, 50, 200, 20);
+    self.subtextLabel.frame = frame;
+    self.subtextLabel.backgroundColor = [UIColor clearColor];
+    self.subtextLabel.textColor = [UIColor blackColor];
 //    frame= CGRectMake(boundsX+70 ,30, 100, 15);
 //    self.subtextLabel.frame = frame;
     
