@@ -7,42 +7,41 @@
 //
 
 #import "WebsiteStore.h"
-static WebsiteStore *defaultStore = nil;
+//static WebsiteStore *defaultStore = nil;
 
+@interface WebsiteStore ()
+@end
 @implementation WebsiteStore
 
-+ (WebsiteStore *)defaultStore
-{
-    if (!defaultStore) {
-        // Create the singleton
-        defaultStore = [[super allocWithZone:NULL] init];
-    }
-    return defaultStore;
-}
+//+ (WebsiteStore *)defaultStore
+//{
+//    if (!defaultStore) {
+//        // Create the singleton
+//        defaultStore = [[super alloc] init];
+//        defaultStore.websites = [[NSMutableArray alloc] init];
+//
+//    }
+//    return defaultStore;
+//}
 
 
 - (id)init
 {
-    if (defaultStore) {
-        return defaultStore;
-    }
+//    if (defaultStore) {
+//        return defaultStore;
+//    }
     
     self = [super init];
     if (self) {
-        websites = [[NSMutableArray alloc] init];
+        
+        self.websites = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-
-
-
-- (NSMutableArray *)websites
-{
-    return websites;
+-(NSMutableArray*)websiteList{
+    return self.websites;
 }
-
-
 
 +(void)setupMapping
 {
@@ -66,6 +65,32 @@ static WebsiteStore *defaultStore = nil;
 }
 
 
+
+
+-(void) websiteByCategoryFetcherWithID:(id)catId {
+    NSString* model = @"/websites/category/";
+
+    id params = catId;
+    NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
+    
+    [[RKClient sharedClient] get:getResourcePath delegate:self];
+
+}
+
+
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{
+    if (request.method == RKRequestMethodGET) {
+        NSArray* parsedResponse = [response parsedBody:nil];
+        
+        for (NSDictionary* website in parsedResponse){
+            [self.websites addObject:website];
+            NSLog(@"!!!!!!!!!!!!");
+        }
+        NSLog(@"%@", self.websites);
+        
+    }
+}
 
 
 

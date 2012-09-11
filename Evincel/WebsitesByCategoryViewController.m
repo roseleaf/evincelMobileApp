@@ -34,35 +34,32 @@
         self.tableView = [[UITableView alloc]init];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-
-        // Custom initialization
     }
     return self;
 }
 
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//        [self websiteByCategoryFetcher];
-//    }
-//    return self;
-//}
-
 
 -(void)viewWillAppear:(BOOL)animated{
+ //   WebsiteStore* store = [WebsiteStore new];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        [store websiteByCategoryFetcherWithID:[self.category objectForKey:@"id"]];
+//        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//            self.websitesArray = store.websites;
+//            
+//        });
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView reloadData];
+//            
+//        });
+//        
+//    });
+
+    
     websitesArray = [NSMutableArray new];
-
     [self websiteByCategoryFetcher];
-    [WebsiteStore loadAllWithBlock:(void(^)(NSArray *websites))^{
-
-    }];
-
-    NSLog(@"%@", websitesArray);
-    NSLog(@"something jees");
-    [self.tableView reloadData];
 }
 
 
@@ -156,7 +153,6 @@
     } else {
         cell.primaryLabel.text = [currentSite valueForKey:@"redirect_url"];
     }
-    currentSite.url = [currentSite valueForKey:@"redirect_url"];
     
         
     cell.subtextLabel.text = [currentSite valueForKey:@"redirect_url"];
@@ -186,7 +182,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Website* currentSite = [websitesArray objectAtIndex:indexPath.row];
+    Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
     WebsiteViewController* websiteView = [WebsiteViewController new];
     websiteView.website = currentSite;
 //    UINavigationController* nav = [[UINavigationController alloc]init];
@@ -209,18 +205,11 @@
 
 //RestKit Client Grabs the List of Categories:
 -(void) websiteByCategoryFetcher {
-//    NSString* model = @"/websites/category/";
-//
-//    id params = [self.category objectForKey:@"id"];
-//    NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
-//    [[RKClient sharedClient] get:getResourcePath delegate:self];
     NSString* model = @"/websites/category/";
-    id params = [self.category objectForKey:@"id"];
-    NSString* resourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:resourcePath usingBlock:^(RKObjectLoader *loader) {
-        loader.onDidLoadObjects = block;
-    }];
 
+    id params = [self.category objectForKey:@"id"];
+    NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
+    [[RKClient sharedClient] get:getResourcePath delegate:self];
 }
 
 

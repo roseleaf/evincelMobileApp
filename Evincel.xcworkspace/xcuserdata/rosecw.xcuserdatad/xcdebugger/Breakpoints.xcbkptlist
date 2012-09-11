@@ -8,12 +8,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Evincel/WebsitesByCategoryViewController.m"
-         timestampString = "369010812.645271"
+         timestampString = "369037339.771318"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
          landmarkName = "-tableView:viewForHeaderInSection:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Evincel/WebsiteStore.m"
+         timestampString = "369037139.86412"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "-request:didLoadResponse:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
