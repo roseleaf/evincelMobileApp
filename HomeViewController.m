@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "CategoriesTableViewController.h"
+#import "SearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface HomeViewController ()
@@ -34,8 +35,6 @@
         [self addSearchButton];
         [self addBrowseButton];
         [self addSignInButton];
-
-        
     }
     return self;
 }
@@ -51,11 +50,12 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (IBAction)dropDownClick {
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Enter Your Search Term:" message:@"Enter Your Search Term" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+                                UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
+                                [textField setBackgroundColor:[UIColor whiteColor]];
+                                [myAlertView addSubview:textField];
+                                [myAlertView show];
 }
 
 
@@ -70,6 +70,7 @@
     self.searchButton = searchButton;
     [self.view addSubview:self.searchButton];
 }
+
 -(void)addBrowseButton{
     UIButton* browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [browseButton addTarget:self action:@selector(goToCategories) forControlEvents:UIControlEventTouchDown];
@@ -97,9 +98,11 @@
 -(void)goToCategories{
     CategoriesTableViewController* categoriesTable = [CategoriesTableViewController new];
     [self.navigationController pushViewController:categoriesTable animated:YES];
-//    [self presentModalViewController:categoriesTable animated:YES];
 }
-
+-(void)goToSearch{
+    SearchViewController* searchTable = [SearchViewController new];
+    [self.navigationController pushViewController:searchTable animated:YES];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

@@ -34,9 +34,9 @@
 		96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89716000BCD008E74E7 /* TopicalHeader.m */; };
 		96BEE89F160019A4008E74E7 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89E160019A4008E74E7 /* Review.m */; };
 		96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A1160019B2008E74E7 /* ReviewStore.m */; };
+		96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A416013DFF008E74E7 /* LoginViewController.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
 		96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F1215FC492000EC8E0C /* WebsiteStore.m */; };
-		96E9500D15FE57E900EC8E0C /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E9500C15FE57E900EC8E0C /* header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,11 +81,12 @@
 		96BEE89E160019A4008E74E7 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		96BEE8A0160019B2008E74E7 /* ReviewStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewStore.h; sourceTree = "<group>"; };
 		96BEE8A1160019B2008E74E7 /* ReviewStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewStore.m; sourceTree = "<group>"; };
+		96BEE8A316013DFF008E74E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		96BEE8A416013DFF008E74E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
 		96E94F1115FC491F00EC8E0C /* WebsiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteStore.h; sourceTree = "<group>"; };
 		96E94F1215FC492000EC8E0C /* WebsiteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteStore.m; sourceTree = "<group>"; };
-		96E9500C15FE57E900EC8E0C /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header.png; path = ../../../../header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +167,6 @@
 				965A608A15FAA529000DF824 /* background.png */,
 				965A608B15FAA529000DF824 /* buttonLong.png */,
 				965A60BE15FADF96000DF824 /* tableHeader@2x.png */,
-				96E9500C15FE57E900EC8E0C /* header.png */,
 				965A608C15FAA529000DF824 /* buttonShort.png */,
 				965A60C015FAE009000DF824 /* tableViewSmaller.png */,
 				965A60AE15FABC2E000DF824 /* middleRow.png */,
@@ -190,6 +190,8 @@
 				96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */,
 				965A60A515FAB486000DF824 /* SearchViewController.h */,
 				965A60A615FAB486000DF824 /* SearchViewController.m */,
+				96BEE8A316013DFF008E74E7 /* LoginViewController.h */,
+				96BEE8A416013DFF008E74E7 /* LoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -282,7 +284,6 @@
 				965A60BD15FADCD1000DF824 /* pressedRow.png in Resources */,
 				965A60BF15FADF96000DF824 /* tableHeader@2x.png in Resources */,
 				965A60C115FAE009000DF824 /* tableViewSmaller.png in Resources */,
-				96E9500D15FE57E900EC8E0C /* header.png in Resources */,
 				96BEE85915FE7CCC008E74E7 /* header@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,6 +325,7 @@
 				96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */,
 				96BEE89F160019A4008E74E7 /* Review.m in Sources */,
 				96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */,
+				96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

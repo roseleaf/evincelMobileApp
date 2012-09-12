@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Website.h"
 
-@interface WebsiteViewController : UIViewController
+@interface WebsiteViewController : UITableViewController
 @property (strong) Website* website;
 @end

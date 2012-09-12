@@ -19,11 +19,12 @@
 
 
 + (WebsiteStore *)sharedStore;
+@property (strong) NSMutableArray* results;
 @property (strong) NSMutableArray* websites;
-
 -(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))block;
+-(void) websitesBySearchTerm:(NSString*)query withBlock:(void(^)(void))block;
 -(NSMutableDictionary*)allWebsites;
-
+-(NSMutableArray*)results;
 
 //+(void)setupMapping;
 //+(void)loadAllWithBlock:(void(^)(NSArray *websites))block;

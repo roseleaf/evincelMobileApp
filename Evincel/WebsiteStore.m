@@ -38,13 +38,16 @@
 -(NSMutableDictionary*)allWebsites{
     return allWebsites;
 }
+-(NSMutableArray*)searchResults{
+    return self.results;
+}
+
 
 -(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))block {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 
-        NSString* model = @"/websites/category/";
         id params = catId;
-        NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
+        NSString* getResourcePath = [@"/websites/category/" stringByAppendingFormat:@"%@.json", params];
         [[RKClient sharedClient]get:getResourcePath usingBlock:^(RKRequest* request){
             request.onDidLoadResponse = ^(RKResponse* response){
                 [self parseRKResponse:response];
@@ -53,6 +56,36 @@
         }];
     });
 }
+
+
+-(void) websitesBySearchTerm:(NSString*)query withBlock:(void(^)(void))block {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        NSString* getResourcePath = [@"/websites.json?utf8=%E2%9C%93&search=" stringByAppendingFormat:@"%@", query];
+        [[RKClient sharedClient]get:getResourcePath usingBlock:^(RKRequest* request){
+            request.onDidLoadResponse = ^(RKResponse* response){
+                [self parseSearchResults:response];
+                dispatch_async(dispatch_get_main_queue(), block);
+            };
+        }];
+    });
+}
+
+-(void)parseSearchResults:(RKResponse*)response{
+    self.results = [NSMutableArray new];
+    id parsedResponse = [response parsedBody:nil];
+    for (id item in parsedResponse){
+        
+        Website* currentSite = [Website new];
+        currentSite.page_title = [item objectForKey:@"page_title"];
+        currentSite.url = [item objectForKey:@"redirect_url"];
+        currentSite.image = [self getFaviconForSite:currentSite];
+        currentSite.category_id = [[item objectForKey:@"category_id"]intValue];
+        currentSite.website_id = [[item objectForKey:@"id"]intValue];
+    [self.results addObject:currentSite];
+    }
+}
+
 
 
 
@@ -67,6 +100,7 @@
         currentSite.url = [item objectForKey:@"redirect_url"];
         currentSite.image = [self getFaviconForSite:currentSite];
         currentSite.category_id = [[item objectForKey:@"category_id"]intValue];
+                currentSite.website_id = [[item objectForKey:@"id"]intValue];
                 
         if (![sitesByCategory objectForKey:@(currentSite.category_id)]) {
             [sitesByCategory setObject:[NSMutableArray new] forKey:@(currentSite.category_id)];

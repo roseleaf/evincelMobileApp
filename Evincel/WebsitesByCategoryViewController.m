@@ -35,14 +35,9 @@
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"id"] withBlock:^{
         [self.tableView reloadData];
     }];
@@ -101,7 +96,9 @@
     
     return view;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
 
 
 
@@ -171,48 +168,9 @@
     [self.navigationController pushViewController:websiteView animated:YES];
 }
 
-//rename goBack
 -(void)dismissToCategories{
     [self dismissModalViewControllerAnimated:YES];
 }
-
-
-
-
-
-
-
-
-
-
-//RestKit Client Grabs the List of Categories:
--(void) websiteByCategoryFetcher {
-    NSString* model = @"/websites/category/";
-
-    id params = [self.category objectForKey:@"id"];
-    NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
-    [[RKClient sharedClient] get:getResourcePath delegate:self];
-}
-
-
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{
-    if (request.method == RKRequestMethodGET) {
-        NSArray* parsedResponse = [response parsedBody:nil];
-        
-        for (NSDictionary* website in parsedResponse){
-            [websitesArray addObject:website];
-        }
-        
-        [self.tableView reloadData];
-    }
-}
-
-
-
-
-
-
 
 //Defaults:
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -18,7 +18,7 @@
     return self;
 }
 
-+(UIView*)createHeader {
++(TopicalHeader*)createHeader {
     TopicalHeader* header = [[TopicalHeader alloc]initWithFrame: CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 100)];
     header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
         
