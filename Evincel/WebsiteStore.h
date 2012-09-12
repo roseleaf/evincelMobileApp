@@ -14,14 +14,14 @@
 
 @interface WebsiteStore : NSObject <RKRequestDelegate>
 {
-    NSMutableDictionary *allWebsites;
+    NSMutableDictionary* allWebsites;
 }
 
 
 + (WebsiteStore *)sharedStore;
-@property (strong) NSMutableArray *websites;
+@property (strong) NSMutableArray* websites;
 
--(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))blovk;
+-(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))block;
 -(NSMutableDictionary*)allWebsites;
 
 

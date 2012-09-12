@@ -41,9 +41,7 @@
 
 -(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))block {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
-        NSLog(@"got a queue");
-        
+                
         NSString* model = @"/websites/category/";
         id params = catId;
         NSString* getResourcePath = [model stringByAppendingFormat:@"%@%@", params, @".json"];
@@ -69,25 +67,16 @@
         currentSite.url = [item objectForKey:@"redirect_url"];
         currentSite.image = [self getFaviconForSite:currentSite];
         currentSite.category_id = [[item objectForKey:@"category_id"]intValue];
-        
-        NSLog(@"the website object:%d", currentSite.category_id);
-        
+                
         if (![sitesByCategory objectForKey:@(currentSite.category_id)]) {
             [sitesByCategory setObject:[NSMutableArray new] forKey:@(currentSite.category_id)];
         }
         [[sitesByCategory objectForKey:@(currentSite.category_id)] addObject:currentSite];
-        
-        NSLog(@"the dictionary: %@", sitesByCategory);
-        NSLog(@"the category array: %@", [sitesByCategory objectForKey:@(currentSite.category_id)]);
-
-    
     }
     
     
     for (NSNumber *key in sitesByCategory.allKeys) {
-        
         [self.allWebsites setObject:[sitesByCategory objectForKey:key] forKey:key];
-        
     }
 }
 
@@ -104,19 +93,7 @@
 
 
 
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{
-    if (request.method == RKRequestMethodGET) {
-        NSArray* parsedResponse = [response parsedBody:nil];
-        
-        for (NSDictionary* website in parsedResponse){
-            [self.websites addObject:website];
-            NSLog(@"!!!!!!!!!!!!");
-        }
-        NSLog(@"%@", self.websites);
-        
-    }
-}
+
 
 
 
