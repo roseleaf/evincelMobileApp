@@ -8,6 +8,7 @@
 
 #import "CategoriesTableViewController.h"
 #import "CategoryCell.h"
+#import "TopicalHeader.h"
 #import "WebsitesByCategoryViewController.h"
 #import <RestKit/RestKit.h>
 
@@ -47,7 +48,9 @@
     // Preserve selection between presentations.
 //     self.clearsSelectionOnViewWillAppear = NO;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 100;
@@ -84,7 +87,7 @@
     backButton.frame = CGRectMake(105.0, 55.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     self.backButton = backButton;
@@ -97,9 +100,9 @@
 
 
 
-
+//rename goBack
 -(void)dismissToHome{
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
@@ -197,10 +200,10 @@
 
     WebsitesByCategoryViewController* wvc = [[WebsitesByCategoryViewController alloc]initWithCategory:category];
 //    wvc.category = category;
-
+    UINavigationController* navControl = [[UINavigationController alloc]initWithRootViewController:wvc];
     wvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-    [self presentModalViewController:wvc animated:YES];
+    [self presentModalViewController:navControl animated:YES];
   
     
 

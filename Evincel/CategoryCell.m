@@ -43,7 +43,7 @@
     
     frame= CGRectMake(boundsX+10 ,10, 80, 80);
     self.topicImageView.frame = frame;
-    frame= CGRectMake(15, 25, 40, 40);
+    frame= CGRectMake(35, 30, 20, 20);
     self.faviconView.frame = frame;
     
     frame= CGRectMake(boundsX+100 ,10, 200, 35);

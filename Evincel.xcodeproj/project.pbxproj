@@ -15,7 +15,6 @@
 		965A607A15FAA00E000DF824 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A607915FAA00E000DF824 /* main.m */; };
 		965A607E15FAA00E000DF824 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A607D15FAA00E000DF824 /* AppDelegate.m */; };
 		965A608715FAA0FA000DF824 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A608515FAA0FA000DF824 /* HomeViewController.m */; };
-		965A608815FAA0FA000DF824 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965A608615FAA0FA000DF824 /* HomeViewController.xib */; };
 		965A609015FAA529000DF824 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608A15FAA529000DF824 /* background.png */; };
 		965A609115FAA529000DF824 /* buttonLong.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608B15FAA529000DF824 /* buttonLong.png */; };
 		965A609215FAA529000DF824 /* buttonShort.png in Resources */ = {isa = PBXBuildFile; fileRef = 965A608C15FAA529000DF824 /* buttonShort.png */; };
@@ -32,6 +31,7 @@
 		965A60DD15FBBD53000DF824 /* WebsitesByCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */; };
 		96BEE85915FE7CCC008E74E7 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96BEE85815FE7CCC008E74E7 /* header@2x.png */; };
 		96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */; };
+		96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89716000BCD008E74E7 /* TopicalHeader.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
 		96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F1215FC492000EC8E0C /* WebsiteStore.m */; };
 		96E9500D15FE57E900EC8E0C /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E9500C15FE57E900EC8E0C /* header.png */; };
@@ -52,7 +52,6 @@
 		965A607D15FAA00E000DF824 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		965A608415FAA0FA000DF824 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
 		965A608515FAA0FA000DF824 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
-		965A608615FAA0FA000DF824 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = ../HomeViewController.xib; sourceTree = "<group>"; };
 		965A608A15FAA529000DF824 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		965A608B15FAA529000DF824 /* buttonLong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonLong.png; sourceTree = "<group>"; };
 		965A608C15FAA529000DF824 /* buttonShort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonShort.png; sourceTree = "<group>"; };
@@ -74,6 +73,8 @@
 		96BEE85815FE7CCC008E74E7 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		96BEE86215FEA2E2008E74E7 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteViewController.h; sourceTree = "<group>"; };
 		96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteViewController.m; sourceTree = "<group>"; };
+		96BEE89616000BCC008E74E7 /* TopicalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicalHeader.h; sourceTree = "<group>"; };
+		96BEE89716000BCD008E74E7 /* TopicalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicalHeader.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
 		96E94F1115FC491F00EC8E0C /* WebsiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteStore.h; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 			children = (
 				965A608415FAA0FA000DF824 /* HomeViewController.h */,
 				965A608515FAA0FA000DF824 /* HomeViewController.m */,
-				965A608615FAA0FA000DF824 /* HomeViewController.xib */,
 				965A60AB15FAB4D2000DF824 /* CategoriesTableViewController.h */,
 				965A60AC15FAB4D2000DF824 /* CategoriesTableViewController.m */,
 				96E94F0E15FC3D1700EC8E0C /* Website.h */,
@@ -141,6 +141,8 @@
 				96E94F1215FC492000EC8E0C /* WebsiteStore.m */,
 				965A60DB15FBBD53000DF824 /* WebsitesByCategoryViewController.h */,
 				965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */,
+				96BEE89616000BCC008E74E7 /* TopicalHeader.h */,
+				96BEE89716000BCD008E74E7 /* TopicalHeader.m */,
 				965A60D115FBACF2000DF824 /* CategoryCell.h */,
 				965A60D215FBACF2000DF824 /* CategoryCell.m */,
 				96BEE86215FEA2E2008E74E7 /* WebsiteViewController.h */,
@@ -237,7 +239,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				965A607815FAA00E000DF824 /* InfoPlist.strings in Resources */,
-				965A608815FAA0FA000DF824 /* HomeViewController.xib in Resources */,
 				965A609015FAA529000DF824 /* background.png in Resources */,
 				965A609115FAA529000DF824 /* buttonLong.png in Resources */,
 				965A609215FAA529000DF824 /* buttonShort.png in Resources */,
@@ -286,6 +287,7 @@
 				96E94F1015FC3D1700EC8E0C /* Website.m in Sources */,
 				96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */,
 				96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */,
+				96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

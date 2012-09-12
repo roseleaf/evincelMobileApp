@@ -47,13 +47,8 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
-
-    // Do any additional setup after loading the view from its nib.
-
 }
 
 - (void)viewDidUnload
@@ -101,8 +96,8 @@
 
 -(void)goToCategories{
     CategoriesTableViewController* categoriesTable = [CategoriesTableViewController new];
-    [self presentModalViewController:categoriesTable animated:YES];
-                                    //:categoriesTable animated:YES completion:nil];
+    [self.navigationController pushViewController:categoriesTable animated:YES];
+//    [self presentModalViewController:categoriesTable animated:YES];
 }
 
 

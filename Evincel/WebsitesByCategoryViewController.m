@@ -9,8 +9,8 @@
 #import "WebsitesByCategoryViewController.h"
 #import "WebsiteViewController.h"
 #import "CategoryCell.h"
+#import "TopicalHeader.h"
 #import "WebsiteStore.h"
-#import "TFHpple.h"
 #import <RestKit/RestKit.h>
 
 
@@ -35,10 +35,14 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"id"] withBlock:^{
         [self.tableView reloadData];
     }];
@@ -89,7 +93,7 @@
     backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.backButton = backButton;
     [view addSubview:self.backButton];
     
@@ -156,14 +160,18 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
+    
+    id catID = [self.category valueForKey:@"id"];
+    NSArray* category = [[[WebsiteStore sharedStore]allWebsites]objectForKey:catID];
+    Website* currentSite = [category objectAtIndex:indexPath.row];
+
     WebsiteViewController* websiteView = [WebsiteViewController new];
     websiteView.website = currentSite;
-//    UINavigationController* nav = [[UINavigationController alloc]init];
+
     [self.navigationController pushViewController:websiteView animated:YES];
-    
 }
 
+//rename goBack
 -(void)dismissToCategories{
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -201,33 +209,7 @@
 }
 
 
-//hpple grabs favicon
--(UIImage*) hppleParseWithLink:(NSURL *)url {
-    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-    TFHpple *doc  = [[TFHpple alloc] initWithHTMLData:data];
-    
-    NSArray *elements  = [doc searchWithXPathQuery:@"//link[@rel='icon']"]; //grab favicon
-    
-    if(![elements count]>=1){
-        elements  = [doc searchWithXPathQuery:@"//link[@rel='shortcut icon']"]; //grab favicon
-    }
-    if([elements count]>=1){
-        
-        TFHppleElement *element = [elements objectAtIndex:0];
-        NSString *srcString = [element objectForKey:@"href"]; //grab favicon src
-        
-        
-        NSURL *url = [NSURL URLWithString:srcString];
-        NSData *srcData = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [[UIImage alloc] initWithData:srcData];
-        
-        NSLog(@"Element <src> parsed: %@",srcString);
-        NSLog(@"%@", image);
-        return image;
-    }
-    
-    return nil;
-}
+
 
 
 
