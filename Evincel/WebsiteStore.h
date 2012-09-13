@@ -14,11 +14,17 @@
 
 @interface WebsiteStore : NSObject <RKRequestDelegate>
 {
+    NSMutableArray* websiteArray;
     NSMutableDictionary* allWebsites;
 }
 
 
 + (WebsiteStore *)sharedStore;
+-(NSMutableArray*)websites;
++(void)setupWebsiteStore;
+-(void)websitesByCategory: (id)catId withBlock: (void(^)(NSArray*))block;
+
+
 @property (strong) NSMutableArray* results;
 @property (strong) NSMutableArray* websites;
 -(void) websitesByCategoryFetcherWithID:(id)catId withBlock:(void(^)(void))block;
@@ -26,6 +32,4 @@
 -(NSMutableDictionary*)allWebsites;
 -(NSMutableArray*)results;
 
-//+(void)setupMapping;
-//+(void)loadAllWithBlock:(void(^)(NSArray *websites))block;
 @end

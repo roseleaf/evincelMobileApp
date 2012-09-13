@@ -7,8 +7,10 @@
 //
 
 #import "LoginViewController.h"
+#import "Review.h"
+#import <RestKit/RestKit.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <RKRequestDelegate>
 
 @end
 
@@ -22,6 +24,25 @@
     }
     return self;
 }
+
+
+//- (void)createObject {
+//    Review* joeBlow = [Review new];
+//    joeBlow.name = @"Joe Blow";
+//    joeBlow.company = @"Two Toasters";
+//    
+//    // POST to /contacts
+//    [ [RKClient sharedClient] postObject:joeBlow delegate:self];
+//}
+
+//    NSDictionary* params = [NSDictionary dictionaryWithObject:@"RestKit" forKey:@"Sender"];
+//[ [RKClient sharedClient] post:@"/other.json" params:params delegate:self];
+//if ([request isPOST]) {
+
+// Handling POST /other.json
+//if ([response isJSON]) {
+//    NSLog(@"Got a JSON response back from our POST!");
+//}
 
 - (void)viewDidLoad
 {

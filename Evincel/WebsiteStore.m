@@ -10,10 +10,10 @@
 
 @interface WebsiteStore ()
 @end
+
+static RKObjectManager* websiteManager;
+
 @implementation WebsiteStore
-
-
-
 + (WebsiteStore *)sharedStore{
     static WebsiteStore *sharedStore = nil;
     if (!sharedStore)
@@ -30,16 +30,58 @@
     self = [super init];
     if (self) {
         allWebsites = [[NSMutableDictionary alloc] init];
+        websiteArray = [NSMutableArray new];
     }
     return self;
 }
 
+-(NSMutableArray*)websiteGroup{
+    return websiteArray;
+}
 
 -(NSMutableDictionary*)allWebsites{
     return allWebsites;
 }
 -(NSMutableArray*)searchResults{
     return self.results;
+}
+
+
++(void)setupWebsiteStore{
+    websiteManager = [[RKObjectManager alloc]init];
+    websiteManager.client = [RKClient sharedClient];
+    
+    [self setupWebsiteMapping];
+}
+
++(void)setupWebsiteMapping{
+    RKObjectMapping* websiteMapping = [RKObjectMapping mappingForClass:[Website class]];
+    [websiteMapping mapKeyPath:@"page_title" toAttribute:@"page_title"];
+    [websiteMapping mapKeyPath:@"url" toAttribute:@"url"];
+    [websiteMapping mapKeyPath:@"category_id" toAttribute:@"category_id"];
+    [websiteMapping mapKeyPath:@"website_id" toAttribute:@"website_id"];
+    [websiteManager.mappingProvider addObjectMapping:websiteMapping];
+    [websiteManager.mappingProvider setSerializationMapping:websiteMapping forClass:[Website class]];
+    
+    [websiteManager.router routeClass:[Website class] toResourcePath:@"/websites.json"];
+}
+
+-(void)websitesByCategory:(id)catId withBlock:(void (^)(NSArray *))block{
+    id params = catId;
+    NSString* resourcePath = [@"/websites/category/" stringByAppendingFormat:@"%@.json", params];
+    
+    [websiteManager loadObjectsAtResourcePath:resourcePath usingBlock:^(RKObjectLoader* loader){
+        loader.objectMapping = [websiteManager.mappingProvider objectMappingForClass:[Website class]];
+        loader.onDidLoadObjects = ^(NSArray* objects) {
+            websiteArray = nil;
+            websiteArray = [NSArray arrayWithArray:objects];
+            block(objects);
+        };
+    }];
+}
+
++(void)saveWebsite:(Website*)website{
+    [websiteManager postObject:website delegate:nil];
 }
 
 

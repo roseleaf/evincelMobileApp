@@ -10,7 +10,7 @@
 #import "TopicalHeader.h"
 #import "ReviewStore.h"
 #import "Review.h"
-#import "CategoryCell.h"
+#import "ReviewCell.h"
 
 @interface WebsiteViewController ()
 
@@ -35,9 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ReviewStore sharedStore]reviewsByWebsiteFetcherWithID:@(self.website.website_id) withBlock:^{
-        [self.tableView reloadData];
-    }];
+
+    
+
     
     self.tableView = [[UITableView alloc]init];
     self.tableView.delegate = self;
@@ -45,25 +45,18 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
-//    UIScrollView *scrollView = [[UIScrollView alloc]   initWithFrame:self.view.frame];
-//    scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-//    scrollView.contentSize = CGSizeMake(320, 800);
-//    UIView* header = [TopicalHeader createHeader];
-//    [header addSubview:[self backButton]];
-//    [scrollView addSubview:header];
-//    UILabel* websiteName = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 320, 100)];
-//    websiteName.text = self.website.page_title;
-//    [scrollView addSubview:websiteName];
-//    [self.view addSubview:scrollView];
-
-    
+  
+    [[ReviewStore sharedStore]reviewsByWebsite: @(self.website.website_id) WithBlock:^(NSArray* reviews){
+        
+        [self.tableView reloadData];
+    }];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 90;
+    return 290;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -90,8 +83,7 @@
 
 //UITableView Delegate Methods:
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int siteID = self.website.website_id;
-    NSArray* array = [[[ReviewStore sharedStore]allReviews] objectForKey:@(siteID)];
+    NSArray* array = [[ReviewStore sharedStore]allReviews];
     
     int count = [array count];
     return count;
@@ -100,37 +92,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CellIdentifier = @"Cell";
-    CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ReviewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[CategoryCell alloc]init];
+        cell = [[ReviewCell alloc]init];
     }
     
-    UIImage* rowBackground = [UIImage imageNamed:@"middleRow.png"];
-    UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
+    UIImage* rowBackground = [UIImage imageNamed:@"background.png"];    
     
-    
-    id siteID = @(self.website.website_id);
-    NSArray* website = [[[ReviewStore sharedStore]allReviews]objectForKey:siteID];
+    NSArray* website = [[ReviewStore sharedStore]allReviews];
     
     
     Review* currentReview = [website objectAtIndex:indexPath.row];
+
+//    cell.rating.text = currentReview
+    cell.heading.text = currentReview.comment;
+    cell.info.text = currentReview.browser;
+    cell.body.text = currentReview.comment;
     
-//    if (currentReview.page_title!=NULL) {
-//        cell.primaryLabel.text = currentSite.page_title;
-//    } else {
-//        cell.primaryLabel.text = currentSite.url;
-//    }
-//    
-    cell.primaryLabel.text = currentReview.browser;
-    cell.subtextLabel.font = [UIFont systemFontOfSize:10];
-    cell.subtextLabel.text = currentReview.comment;
     
+    cell.heading.font = [UIFont systemFontOfSize:10];    
     cell.faviconView.image = self.website.image;
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
-    UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
+//    UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
+    cell.selectedBackgroundView =cellImageView;
     cell.backgroundView = cellImageView;
-    cell.selectedBackgroundView =pressedImageView;
     
     
     cell.accessoryType = UITableViewCellAccessoryNone;

@@ -9,6 +9,10 @@
 #import "ReviewStore.h"
 #import "Review.h"
 
+
+
+static RKObjectManager* reviewObjectManager;
+
 @implementation ReviewStore
 +(ReviewStore*)sharedStore {
     static ReviewStore *sharedStore = nil;
@@ -23,58 +27,59 @@
 -(id)init{
     self = [super init];
     if (self) {
-        allReviews = [[NSMutableDictionary alloc]init];
+        reviewArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
 
--(NSMutableDictionary*)allReviews{
-    return allReviews;
-}
-
--(void) reviewsByWebsiteFetcherWithID:(id)siteId withBlock:(void (^)(void))block{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        id params = siteId;
-        NSString* getResourcePath = [@"/reviews/website/" stringByAppendingFormat:@"%@.json", params];
-        [[RKClient sharedClient]get:getResourcePath usingBlock:^(RKRequest* request) {
-            request.onDidLoadResponse = ^(RKResponse* response){
-            [self parseRKResponse:response];
-            dispatch_async(dispatch_get_main_queue(), block);
-            };
-        }];
-        
-    });
-}
-
-
--(void)parseRKResponse:(RKResponse*)response{
-    NSMutableDictionary* reviewsBySite = [NSMutableDictionary new];
-    id parsedResponse = [response parsedBody:nil];
-    
-    for (id item in parsedResponse){
-        Review* currentReview = [Review new];
-        currentReview.browser = [item objectForKey:@"browser"];
-        currentReview.comment = [item objectForKey:@"comment"];
-        currentReview.created_at = [item objectForKey:@"created_at"];
-        currentReview.platform = [item objectForKey:@"platform"];
-        currentReview.website_id = [[item objectForKey:@"website_id"]intValue];
-    
-        if (![reviewsBySite objectForKey:@(currentReview.website_id)]) {
-            [reviewsBySite setObject:[NSMutableArray new] forKey:@(currentReview.website_id)];
-        }
-        
-        [[reviewsBySite objectForKey:@(currentReview.website_id)]addObject:currentReview];
-    }
-    for (NSNumber *key in reviewsBySite.allKeys) {
-        [self.allReviews setObject:[reviewsBySite objectForKey:key] forKey:key];
-    }
-    
+-(NSMutableArray*)allReviews{
+    return reviewArray;
 }
 
 
 
 
 
++(void)setupReviewStore {
+    RKClient* reviewClient = [RKClient clientWithBaseURLString:@"http://evincel.com"];
+    reviewObjectManager = [[RKObjectManager alloc] init];
+    reviewObjectManager.client = reviewClient;
+    
+    [self setupReviewMapping];
+}
+
++(void)setupReviewMapping {
+    RKObjectMapping* reviewMapping = [RKObjectMapping mappingForClass:[Review class]];
+    [reviewMapping mapKeyPath:@"browser" toAttribute:@"browser"];
+    [reviewMapping mapKeyPath:@"comment" toAttribute:@"comment"];
+    [reviewMapping mapKeyPath:@"created_at" toAttribute:@"created_at"];
+    [reviewMapping mapKeyPath:@"platform" toAttribute:@"platform"];
+    [reviewMapping mapKeyPath:@"website_id" toAttribute:@"website_id"];
+    [reviewObjectManager.mappingProvider addObjectMapping:reviewMapping];
+    [reviewObjectManager.mappingProvider setSerializationMapping:reviewMapping forClass:[Review class]];
+    
+    [reviewObjectManager.router routeClass:[Review class] toResourcePath:@"/reviews.json"];
+}
+
+
+-(void)reviewsByWebsite: (id)siteId WithBlock:(void(^)(NSArray*))block {
+    id params = siteId;
+    NSString* resourcePath = [@"/reviews/website/" stringByAppendingFormat:@"%@.json", params];
+
+    
+    [reviewObjectManager loadObjectsAtResourcePath:resourcePath usingBlock:^(RKObjectLoader *loader) {
+        loader.objectMapping = [reviewObjectManager.mappingProvider objectMappingForClass:[Review class]];
+        loader.onDidLoadObjects = ^(NSArray* objects){
+            reviewArray = nil;
+            reviewArray = [NSArray arrayWithArray:objects];
+            block(objects);
+        };
+    }];
+}
+
++(void)saveReview:(Review*)review {
+    [reviewObjectManager postObject:review delegate:nil];
+}
 
 
 @end

@@ -48,6 +48,10 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
+    
+    [[WebsiteStore sharedStore]websitesByCategory:[self.category objectForKey:@"id"] withBlock:^(NSArray* websites){
+        [self.tableView reloadData];
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

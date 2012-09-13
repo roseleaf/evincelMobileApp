@@ -13,6 +13,7 @@
 #import "CategoriesTableViewController.h"
 #import <RestKit/RestKit.h>
 #import "WebsiteStore.h"
+#import "ReviewStore.h"
 
 @implementation AppDelegate
 
@@ -28,19 +29,11 @@
     [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone;
     
     
-    RKObjectMapping* websiteMapping = [RKObjectMapping mappingForClass:[Website class]];
-    [websiteMapping mapKeyPath:@"page_title" toAttribute:@"page_title"];
-    [websiteMapping mapKeyPath:@"url" toAttribute:@"url"];
-    [websiteMapping mapKeyPath:@"category_id" toAttribute:@"category_id"];
-    
-    [[RKObjectManager sharedManager].mappingProvider setMapping:websiteMapping forKeyPath:@"websites"];
+
     
     
-//    [WebsiteStore setupMapping];
-//    [WebsiteStore loadAllWithBlock:^(NSArray *websites) {
-//        NSLog(@"These are all the websites:\n%@", websites);
-//    }];
-    
+    [WebsiteStore setupWebsiteStore];
+    [ReviewStore setupReviewStore];
     UINavigationController* navControl = [[UINavigationController alloc]initWithRootViewController:[HomeViewController new]];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

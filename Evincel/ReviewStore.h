@@ -10,12 +10,13 @@
 #import <RestKit/RestKit.h>
 
 @interface ReviewStore : NSObject <RKRequestDelegate> {
-    NSMutableDictionary* allReviews;
+    NSMutableArray* reviewArray;
 }
-
 + (ReviewStore*) sharedStore;
-@property (strong) NSMutableArray* reviews;
+-(NSMutableArray*)allReviews;
 
--(void)reviewsByWebsiteFetcherWithID:(id)siteId withBlock:(void(^)(void)) block;
--(NSMutableDictionary*)allReviews;
++(void)setupReviewStore;
+-(void)reviewsWithBlock:(void(^)(NSArray*))block;
+-(void)reviewsByWebsite: (id)siteId WithBlock: (void(^)(NSArray*))block;
+
 @end

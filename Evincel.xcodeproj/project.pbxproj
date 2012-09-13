@@ -35,6 +35,7 @@
 		96BEE89F160019A4008E74E7 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89E160019A4008E74E7 /* Review.m */; };
 		96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A1160019B2008E74E7 /* ReviewStore.m */; };
 		96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A416013DFF008E74E7 /* LoginViewController.m */; };
+		96BEE8A816015657008E74E7 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A716015657008E74E7 /* ReviewCell.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
 		96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F1215FC492000EC8E0C /* WebsiteStore.m */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,8 @@
 		96BEE8A1160019B2008E74E7 /* ReviewStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewStore.m; sourceTree = "<group>"; };
 		96BEE8A316013DFF008E74E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		96BEE8A416013DFF008E74E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		96BEE8A616015657008E74E7 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
+		96BEE8A716015657008E74E7 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
 		96E94F1115FC491F00EC8E0C /* WebsiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteStore.h; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				96BEE89716000BCD008E74E7 /* TopicalHeader.m */,
 				965A60D115FBACF2000DF824 /* CategoryCell.h */,
 				965A60D215FBACF2000DF824 /* CategoryCell.m */,
+				96BEE8A616015657008E74E7 /* ReviewCell.h */,
+				96BEE8A716015657008E74E7 /* ReviewCell.m */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				96BEE89F160019A4008E74E7 /* Review.m in Sources */,
 				96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */,
 				96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */,
+				96BEE8A816015657008E74E7 /* ReviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

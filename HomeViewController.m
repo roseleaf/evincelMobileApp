@@ -34,7 +34,7 @@
         [self.view addSubview:self.header];
         [self addSearchButton];
         [self addBrowseButton];
-        [self addSignInButton];
+        //[self addSignInButton];
     }
     return self;
 }
