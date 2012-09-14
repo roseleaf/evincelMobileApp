@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Review : NSObject
+@interface Review : NSManagedObject
 @property (strong) NSString* browser;
 @property (strong) NSString* comment;
 @property (strong) NSString* created_at;
 @property (strong) NSString* platform;
+@property (strong) NSString* posted_by;
+@property int rating;
 @property int website_id;
+@property int review_id;
 @end

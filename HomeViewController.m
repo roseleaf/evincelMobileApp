@@ -9,13 +9,14 @@
 #import "HomeViewController.h"
 #import "CategoriesTableViewController.h"
 #import "SearchViewController.h"
+#import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <RestKit/RestKit.h>
 
 @interface HomeViewController ()
 @property UIImageView* header;
 @property UIButton* searchButton;
 @property UIButton* browseButton;
-@property UIButton* signInButton;
 @end
 
 @implementation HomeViewController
@@ -34,7 +35,8 @@
         [self.view addSubview:self.header];
         [self addSearchButton];
         [self addBrowseButton];
-        //[self addSignInButton];
+        
+
     }
     return self;
 }
@@ -48,16 +50,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
+    if ([RKClient sharedClient].username == nil) {
+        [self addSignInButton];
+        
+    } else {
+        [self addSignOutButton];
+    }
 }
-
-- (IBAction)dropDownClick {
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Enter Your Search Term:" message:@"Enter Your Search Term" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-                                UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
-                                [textField setBackgroundColor:[UIColor whiteColor]];
-                                [myAlertView addSubview:textField];
-                                [myAlertView show];
-}
-
 
 -(void)addSearchButton{
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -93,6 +92,21 @@
     self.signInButton = signInButton;
     [self.view addSubview:self.signInButton];
 }
+-(void)addSignOutButton{
+    UIButton* signOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [signOutButton addTarget:self action:@selector(signOut) forControlEvents:UIControlEventTouchDown];
+    [signOutButton setTitle:@"Sign Out" forState:UIControlStateNormal];
+    signOutButton.frame = CGRectMake(56.0, 300.0, 200.0, 40.0);
+    UIImage* buttonImage = [UIImage imageNamed:@"buttonLong.png"];
+    [signOutButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [signOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.signOutButton = signOutButton;
+    [self.view addSubview:self.signOutButton];
+}
+-(void)signOut{
+    [RKClient sharedClient].username = nil;
+    [self addSignInButton];
+}
 
 
 -(void)goToCategories{
@@ -102,6 +116,10 @@
 -(void)goToSearch{
     SearchViewController* searchTable = [SearchViewController new];
     [self.navigationController pushViewController:searchTable animated:YES];
+}
+-(void)goToSignIn{
+    LoginViewController* login = [LoginViewController new];
+    [self.navigationController pushViewController:login animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

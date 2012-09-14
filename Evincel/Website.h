@@ -10,7 +10,7 @@
 
 NSMutableArray* WEBSITES;
 
-@interface Website : NSObject <RKRequestDelegate> {
+@interface Website : NSManagedObject <RKRequestDelegate> {
 }
 
 @property (strong) NSString* page_title;

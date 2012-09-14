@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
+#import <CoreData/CoreData.h>
 
 @interface ReviewStore : NSObject <RKRequestDelegate> {
     NSMutableArray* reviewArray;
@@ -16,7 +17,6 @@
 -(NSMutableArray*)allReviews;
 
 +(void)setupReviewStore;
--(void)reviewsWithBlock:(void(^)(NSArray*))block;
 -(void)reviewsByWebsite: (id)siteId WithBlock: (void(^)(NSArray*))block;
 
 @end

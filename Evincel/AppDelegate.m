@@ -12,8 +12,11 @@
 #import "WebsiteViewController.h"
 #import "CategoriesTableViewController.h"
 #import <RestKit/RestKit.h>
+#import <CoreData/CoreData.h>
+
 #import "WebsiteStore.h"
 #import "ReviewStore.h"
+#import "CategoryStore.h"
 
 @implementation AppDelegate
 
@@ -26,12 +29,9 @@
     [RKClient clientWithBaseURLString:@"http://evincel.com/"];
     [RKClient sharedClient].requestQueue.requestTimeout = 10;
     [RKClient sharedClient].cachePolicy = RKRequestCachePolicyNone;
-    [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone;
-    
-    
+    [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeHTTPBasic;
 
-    
-    
+    [CategoryStore setUpCategoryStore];
     [WebsiteStore setupWebsiteStore];
     [ReviewStore setupReviewStore];
     UINavigationController* navControl = [[UINavigationController alloc]initWithRootViewController:[HomeViewController new]];

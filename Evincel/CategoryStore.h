@@ -1,5 +1,5 @@
 //
-//  CategorStore.h
+//  CategoryStore.h
 //  Evincel
 //
 //  Created by Rose CW on 9/13/12.
@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+@interface CategoryStore : NSObject <RKRequestDelegate>
+{
+    NSMutableArray* allCategories;
+}
 
-@interface CategorStore : NSObject
++(CategoryStore*)sharedStore;
+-(NSMutableArray*)categories;
++(void)setUpCategoryStore;
++(void)fetchCategories:(void(^)(void))completionBlock;
 
 @end

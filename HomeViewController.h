@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
+@property UIButton* signInButton;
+@property UIButton* signOutButton;
 @end

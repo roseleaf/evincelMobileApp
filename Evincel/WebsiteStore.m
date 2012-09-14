@@ -50,19 +50,27 @@ static RKObjectManager* websiteManager;
 +(void)setupWebsiteStore{
     websiteManager = [[RKObjectManager alloc]init];
     websiteManager.client = [RKClient sharedClient];
-    
+    websiteManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"websiteStore.sqlite3"];
+
     [self setupWebsiteMapping];
 }
 
 +(void)setupWebsiteMapping{
-    RKObjectMapping* websiteMapping = [RKObjectMapping mappingForClass:[Website class]];
+    RKObjectMapping* websiteMapping = [RKObjectMapping mappingForClass:[Website class]]; //inManagedObjectStore:websiteManager.objectStore];
+    websiteMapping.objectClass = [Website class];
+
     [websiteMapping mapKeyPath:@"page_title" toAttribute:@"page_title"];
     [websiteMapping mapKeyPath:@"url" toAttribute:@"url"];
     [websiteMapping mapKeyPath:@"category_id" toAttribute:@"category_id"];
     [websiteMapping mapKeyPath:@"website_id" toAttribute:@"website_id"];
+    //websiteMapping.primaryKeyAttribute = @"website_id";
+
     [websiteManager.mappingProvider addObjectMapping:websiteMapping];
+    RKObjectMapping* serializationMapping = websiteMapping.inverseMapping;
+
     [websiteManager.mappingProvider setSerializationMapping:websiteMapping forClass:[Website class]];
-    
+    serializationMapping.rootKeyPath = @"website";
+
     [websiteManager.router routeClass:[Website class] toResourcePath:@"/websites.json"];
 }
 

@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"id"] withBlock:^{
+    [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"category_id"] withBlock:^{
         [self.tableView reloadData];
     }];
     
@@ -49,7 +49,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
     
-    [[WebsiteStore sharedStore]websitesByCategory:[self.category objectForKey:@"id"] withBlock:^(NSArray* websites){
+    [[WebsiteStore sharedStore]websitesByCategory:[self.category objectForKey:@"category_id"] withBlock:^(NSArray* websites){
         [self.tableView reloadData];
     }];
 }

@@ -55,6 +55,9 @@ static RKObjectManager* reviewObjectManager;
     [reviewMapping mapKeyPath:@"created_at" toAttribute:@"created_at"];
     [reviewMapping mapKeyPath:@"platform" toAttribute:@"platform"];
     [reviewMapping mapKeyPath:@"website_id" toAttribute:@"website_id"];
+    [reviewMapping mapKeyPath:@"posted_by" toAttribute:@"posted_by"];
+    [reviewMapping mapKeyPath:@"rating" toAttribute:@"rating"];
+    [reviewMapping mapKeyPath:@"id" toAttribute:@"review_id"];
     [reviewObjectManager.mappingProvider addObjectMapping:reviewMapping];
     [reviewObjectManager.mappingProvider setSerializationMapping:reviewMapping forClass:[Review class]];
     

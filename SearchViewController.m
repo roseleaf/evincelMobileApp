@@ -32,9 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [[WebsiteStore sharedStore]websitesBySearchTerm:self.searchTerm withBlock:^{
-//        [self.tableView reloadData];
-//    }];
     
     self.tableView = [[UITableView alloc]init];
     self.tableView.delegate = self;
@@ -69,11 +66,10 @@
     headerLabel.text = @"Search Evincel";
     [header addSubview:headerLabel];
     
-    UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(55, 100, 200, 30)];
+    UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(60, 100, 190, 30)];
     searchBar.delegate = self;
-    searchBar.placeholder = @"Enter Search Term";
+    searchBar.placeholder = @"Search All Sites";
     searchBar.backgroundImage = [UIImage imageNamed:@"buttonLong.png"];
-    searchBar.showsSearchResultsButton = YES;
 
     [header addSubview:searchBar];
 

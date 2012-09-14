@@ -10,11 +10,15 @@
 #import "CategoryCell.h"
 #import "TopicalHeader.h"
 #import "WebsitesByCategoryViewController.h"
+#import "CategoryStore.h"
+#import "Category.h"
 #import <RestKit/RestKit.h>
+#import <CoreData/CoreData.h>
 
 @interface CategoriesTableViewController () <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, RKRequestDelegate, NSXMLParserDelegate> {
-    NSMutableArray* categoriesArray;
+    NSArray* categoriesArray;
 }
+@property NSArray* categoriesArray;
 @property UIImageView* header;
 @property UIButton* backButton;
 @end
@@ -29,7 +33,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self categoryFetcher];
+
+        //[self categoryFetcher];
     }
     return self;
 }
@@ -38,13 +43,18 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
- 
+    self.categoriesArray = [Category allObjects];
+
+    if (self.categoriesArray.count == 0) {
+        [self refreshCategories];
+    };
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
-    categoriesArray = [NSMutableArray new];
+    //categoriesArray = [NSMutableArray new];
+
     // Preserve selection between presentations.
 //     self.clearsSelectionOnViewWillAppear = NO;
 }
@@ -55,7 +65,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 100;
 }
-
+-(void)refreshCategories {
+    NSLog(@"Refreshing!");
+    [CategoryStore fetchCategories:^{
+        self.categoriesArray = [Category allObjects];
+        [self.tableView reloadData];
+    }];
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -118,7 +134,7 @@
 //UITableView Delegate Methods:
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [categoriesArray count];
+    int count = [self.categoriesArray count];
     return count;
 
 }
@@ -134,11 +150,11 @@
     UIImage* rowBackground = [UIImage imageNamed:@"middleRow.png"];
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
     
-    cell.primaryLabel.text = [[categoriesArray objectAtIndex:indexPath.row]valueForKey:@"name"];
+    cell.primaryLabel.text = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"name"];
     cell.subtextLabel.text = @"";
 
     NSString* baseString = @"http://evincel.com";
-    NSString* imageUrl = [[categoriesArray objectAtIndex:indexPath.row]valueForKey:@"image"];
+    NSString* imageUrl = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"image"];
     NSString* srcString = [baseString stringByAppendingString:imageUrl];
     
     NSURL *url = [NSURL URLWithString:srcString];
@@ -164,29 +180,43 @@
 
 
 
-//RestKit Client Grabs the List of Categories:
--(void) categoryFetcher {
-//    NSString* model = @"/websites.json?category_id=2";
-//    [[RKClient sharedClient] get:model delegate:self];
+////RestKit Client Grabs the List of Categories:
+//-(void) categoryFetcher {
+////    NSString* model = @"/websites.json?category_id=2";
+////    [[RKClient sharedClient] get:model delegate:self];
+//    RKClient* client = [RKClient clientWithBaseURLString:@"http://evincel.com/"];
+//    [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone
+//    ;
+//    [[RKClient sharedClient] get:@"/categories.json" usingBlock:^(RKRequest* request) {
+//        request.onDidLoadResponse = ^(RKResponse* response){
+//            [self parseRKResponse:response];
+//        };
+//    }];    
+//}
 
-    [[RKClient sharedClient] get:@"/categories.json" delegate:self];
-}
-
-
-
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{
-    if (request.method == RKRequestMethodGET) {
-        NSArray* parsedResponse = [response parsedBody:nil];
-
-        
-        for (NSDictionary* category in parsedResponse){
-            [categoriesArray addObject:category];
-        }
-
-        [self.tableView reloadData];
-    }
-}
+//-(void)parseRKResponse:(RKResponse*)response{
+//    NSArray* parsedResponse = [response parsedBody:nil];
+//    for (NSDictionary* category in parsedResponse){
+//        [categoriesArray addObject:category];
+//    }
+//    
+//    [self.tableView reloadData];
+//
+//}
+//
+//- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+//{
+//    if (request.method == RKRequestMethodGET) {
+//        NSArray* parsedResponse = [response parsedBody:nil];
+//
+//        
+//        for (NSDictionary* category in parsedResponse){
+//            [categoriesArray addObject:category];
+//        }
+//
+//        [self.tableView reloadData];
+//    }
+//}
 
 
 
@@ -196,7 +226,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* category = [categoriesArray objectAtIndex:indexPath.row];
+    NSDictionary* category = [self.categoriesArray objectAtIndex:indexPath.row];
 
     WebsitesByCategoryViewController* wvc = [[WebsitesByCategoryViewController alloc]initWithCategory:category];
 //    wvc.category = category;
