@@ -8,12 +8,12 @@
 
 #import "WebsiteViewController.h"
 #import "TopicalHeader.h"
-#import "ReviewStore.h"
 #import "Review.h"
 #import "ReviewCell.h"
+#import "ApplicationStore.h"
 
 @interface WebsiteViewController ()
-
+@property (strong)NSArray* reviews;
 @end
 
 @implementation WebsiteViewController
@@ -35,9 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
-
+    self.reviews = [self selectReviews];
+    if (self.reviews.count == 0) {
+        [self refreshReviews];
+    };
     
     self.tableView = [[UITableView alloc]init];
     self.tableView.delegate = self;
@@ -45,16 +47,37 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
-  
-    [[ReviewStore sharedStore]reviewsByWebsite: @(self.website.website_id) WithBlock:^(NSArray* reviews){
-        
-        [self.tableView reloadData];
-    }];
+//  
+//    [[ReviewStore sharedStore]reviewsByWebsite: @(self.website.website_id) WithBlock:^(NSArray* reviews){
+//        
+//        [self.tableView reloadData];
+//    }];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
 }
+
+-(void)refreshReviews{
+    [ApplicationStore fetchReviews:^{
+        self.reviews = [self selectReviews];
+        [self.tableView reloadData];
+    }];
+}
+
+-(NSArray*)selectReviews{
+    NSManagedObjectContext* thisContext = [ApplicationStore context];
+    
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Review" inManagedObjectContext:thisContext];
+    NSFetchRequest* request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDescription];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"website_id==%@", [self.website valueForKey:@"website_id"]]];
+    NSError* error = nil;
+    NSArray* array = [[ApplicationStore context] executeFetchRequest:request error:&error];
+    return array;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 290;
 }
@@ -83,9 +106,8 @@
 
 //UITableView Delegate Methods:
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray* array = [[ReviewStore sharedStore]allReviews];
     
-    int count = [array count];
+    int count = [self.reviews count];
     return count;
 }
 
@@ -99,10 +121,8 @@
     
     UIImage* rowBackground = [UIImage imageNamed:@"background.png"];    
     
-    NSArray* website = [[ReviewStore sharedStore]allReviews];
     
-    
-    Review* currentReview = [website objectAtIndex:indexPath.row];
+    Review* currentReview = [self.reviews objectAtIndex:indexPath.row];
 
 //    cell.rating.text = currentReview
     cell.heading.text = currentReview.comment;

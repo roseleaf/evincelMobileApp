@@ -14,9 +14,7 @@
 #import <RestKit/RestKit.h>
 #import <CoreData/CoreData.h>
 
-#import "WebsiteStore.h"
-#import "ReviewStore.h"
-#import "CategoryStore.h"
+#import "ApplicationStore.h"
 
 @implementation AppDelegate
 
@@ -31,9 +29,8 @@
     [RKClient sharedClient].cachePolicy = RKRequestCachePolicyNone;
     [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeHTTPBasic;
 
-    [CategoryStore setUpCategoryStore];
-    [WebsiteStore setupWebsiteStore];
-    [ReviewStore setupReviewStore];
+    [ApplicationStore setUpApplicationStore];
+
     UINavigationController* navControl = [[UINavigationController alloc]initWithRootViewController:[HomeViewController new]];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

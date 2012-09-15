@@ -33,18 +33,14 @@
 		96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */; };
 		96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89716000BCD008E74E7 /* TopicalHeader.m */; };
 		96BEE89F160019A4008E74E7 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE89E160019A4008E74E7 /* Review.m */; };
-		96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A1160019B2008E74E7 /* ReviewStore.m */; };
 		96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A416013DFF008E74E7 /* LoginViewController.m */; };
 		96BEE8A816015657008E74E7 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A716015657008E74E7 /* ReviewCell.m */; };
-		96BEE8AB1602AA6F008E74E7 /* WebsiteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8A91602AA6F008E74E7 /* WebsiteModel.xcdatamodeld */; };
-		96BEE8B11602AAB7008E74E7 /* ReviewModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8AE1602AAB7008E74E7 /* ReviewModel.xcdatamodeld */; };
-		96BEE8B51602AC43008E74E7 /* CategoryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8B41602AC42008E74E7 /* CategoryStore.m */; };
 		96BEE8C416037CA4008E74E7 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8C316037CA3008E74E7 /* Category.m */; };
 		96BEE8C716039D8E008E74E7 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8C616039D8E008E74E7 /* AddReviewViewController.m */; };
 		96BEE8C91603A8AE008E74E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BEE8C81603A8AE008E74E7 /* CoreData.framework */; };
-		96BEE8CC1603B72A008E74E7 /* CategoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8CA1603B729008E74E7 /* CategoryModel.xcdatamodeld */; };
+		96BEE8D71603EF71008E74E7 /* EvincelModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8D51603EF70008E74E7 /* EvincelModel.xcdatamodeld */; };
+		96BEE8DA1603EFD5008E74E7 /* ApplicationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
-		96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F1215FC492000EC8E0C /* WebsiteStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,26 +83,20 @@
 		96BEE89716000BCD008E74E7 /* TopicalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicalHeader.m; sourceTree = "<group>"; };
 		96BEE89D160019A4008E74E7 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		96BEE89E160019A4008E74E7 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
-		96BEE8A0160019B2008E74E7 /* ReviewStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewStore.h; sourceTree = "<group>"; };
-		96BEE8A1160019B2008E74E7 /* ReviewStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewStore.m; sourceTree = "<group>"; };
 		96BEE8A316013DFF008E74E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		96BEE8A416013DFF008E74E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		96BEE8A616015657008E74E7 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
 		96BEE8A716015657008E74E7 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
-		96BEE8AA1602AA6F008E74E7 /* WebsiteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WebsiteModel.xcdatamodel; sourceTree = "<group>"; };
-		96BEE8AF1602AAB7008E74E7 /* ReviewModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReviewModel.xcdatamodel; sourceTree = "<group>"; };
-		96BEE8B31602AC42008E74E7 /* CategoryStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryStore.h; sourceTree = "<group>"; };
-		96BEE8B41602AC42008E74E7 /* CategoryStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryStore.m; sourceTree = "<group>"; };
 		96BEE8C216037CA3008E74E7 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		96BEE8C316037CA3008E74E7 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		96BEE8C516039D8E008E74E7 /* AddReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
 		96BEE8C616039D8E008E74E7 /* AddReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
 		96BEE8C81603A8AE008E74E7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		96BEE8CB1603B72A008E74E7 /* CategoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CategoryModel.xcdatamodel; sourceTree = "<group>"; };
+		96BEE8D61603EF71008E74E7 /* EvincelModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EvincelModel.xcdatamodel; sourceTree = "<group>"; };
+		96BEE8D81603EFD4008E74E7 /* ApplicationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStore.h; sourceTree = "<group>"; };
+		96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStore.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
-		96E94F1115FC491F00EC8E0C /* WebsiteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteStore.h; sourceTree = "<group>"; };
-		96E94F1215FC492000EC8E0C /* WebsiteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,21 +213,15 @@
 		96BEE89B16001983008E74E7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				96BEE8D51603EF70008E74E7 /* EvincelModel.xcdatamodeld */,
+				96BEE8D81603EFD4008E74E7 /* ApplicationStore.h */,
+				96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */,
 				96BEE8C216037CA3008E74E7 /* Category.h */,
 				96BEE8C316037CA3008E74E7 /* Category.m */,
-				96BEE8B31602AC42008E74E7 /* CategoryStore.h */,
-				96BEE8B41602AC42008E74E7 /* CategoryStore.m */,
-				96BEE8CA1603B729008E74E7 /* CategoryModel.xcdatamodeld */,
 				96E94F0E15FC3D1700EC8E0C /* Website.h */,
 				96E94F0F15FC3D1700EC8E0C /* Website.m */,
-				96E94F1115FC491F00EC8E0C /* WebsiteStore.h */,
-				96E94F1215FC492000EC8E0C /* WebsiteStore.m */,
-				96BEE8A91602AA6F008E74E7 /* WebsiteModel.xcdatamodeld */,
 				96BEE89D160019A4008E74E7 /* Review.h */,
 				96BEE89E160019A4008E74E7 /* Review.m */,
-				96BEE8A0160019B2008E74E7 /* ReviewStore.h */,
-				96BEE8A1160019B2008E74E7 /* ReviewStore.m */,
-				96BEE8AE1602AAB7008E74E7 /* ReviewModel.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -353,19 +337,15 @@
 				965A60D315FBACF2000DF824 /* CategoryCell.m in Sources */,
 				965A60DD15FBBD53000DF824 /* WebsitesByCategoryViewController.m in Sources */,
 				96E94F1015FC3D1700EC8E0C /* Website.m in Sources */,
-				96E94F1315FC492000EC8E0C /* WebsiteStore.m in Sources */,
 				96BEE86415FEA2E2008E74E7 /* WebsiteViewController.m in Sources */,
 				96BEE89816000BCD008E74E7 /* TopicalHeader.m in Sources */,
 				96BEE89F160019A4008E74E7 /* Review.m in Sources */,
-				96BEE8A2160019B2008E74E7 /* ReviewStore.m in Sources */,
 				96BEE8A516013E00008E74E7 /* LoginViewController.m in Sources */,
 				96BEE8A816015657008E74E7 /* ReviewCell.m in Sources */,
-				96BEE8AB1602AA6F008E74E7 /* WebsiteModel.xcdatamodeld in Sources */,
-				96BEE8B11602AAB7008E74E7 /* ReviewModel.xcdatamodeld in Sources */,
-				96BEE8B51602AC43008E74E7 /* CategoryStore.m in Sources */,
 				96BEE8C416037CA4008E74E7 /* Category.m in Sources */,
 				96BEE8C716039D8E008E74E7 /* AddReviewViewController.m in Sources */,
-				96BEE8CC1603B72A008E74E7 /* CategoryModel.xcdatamodeld in Sources */,
+				96BEE8D71603EF71008E74E7 /* EvincelModel.xcdatamodeld in Sources */,
+				96BEE8DA1603EFD5008E74E7 /* ApplicationStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,34 +460,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		96BEE8A91602AA6F008E74E7 /* WebsiteModel.xcdatamodeld */ = {
+		96BEE8D51603EF70008E74E7 /* EvincelModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				96BEE8AA1602AA6F008E74E7 /* WebsiteModel.xcdatamodel */,
+				96BEE8D61603EF71008E74E7 /* EvincelModel.xcdatamodel */,
 			);
-			currentVersion = 96BEE8AA1602AA6F008E74E7 /* WebsiteModel.xcdatamodel */;
-			path = WebsiteModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		96BEE8AE1602AAB7008E74E7 /* ReviewModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				96BEE8AF1602AAB7008E74E7 /* ReviewModel.xcdatamodel */,
-			);
-			currentVersion = 96BEE8AF1602AAB7008E74E7 /* ReviewModel.xcdatamodel */;
-			path = ReviewModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		96BEE8CA1603B729008E74E7 /* CategoryModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				96BEE8CB1603B72A008E74E7 /* CategoryModel.xcdatamodel */,
-			);
-			currentVersion = 96BEE8CB1603B72A008E74E7 /* CategoryModel.xcdatamodel */;
-			name = CategoryModel.xcdatamodeld;
-			path = ../CategoryModel.xcdatamodeld;
+			currentVersion = 96BEE8D61603EF71008E74E7 /* EvincelModel.xcdatamodel */;
+			path = EvincelModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

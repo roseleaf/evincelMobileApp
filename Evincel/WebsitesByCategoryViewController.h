@@ -13,7 +13,7 @@
 @interface WebsitesByCategoryViewController : UITableViewController <RKRequestDelegate>
 
 @property (strong) NSDictionary* category;
-@property (strong) NSMutableArray* websitesArray;
+@property (strong) NSArray* websitesArray;
 
 //-(void)websiteByCategoryFetcher;
 -(id)initWithCategory:(NSDictionary*)category;

@@ -10,10 +10,10 @@
 #import "CategoryCell.h"
 #import "TopicalHeader.h"
 #import "WebsitesByCategoryViewController.h"
-#import "CategoryStore.h"
 #import "Category.h"
 #import <RestKit/RestKit.h>
-#import <CoreData/CoreData.h>
+
+#import "ApplicationStore.h"
 
 @interface CategoriesTableViewController () <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, RKRequestDelegate, NSXMLParserDelegate> {
     NSArray* categoriesArray;
@@ -62,16 +62,18 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 100;
-}
 -(void)refreshCategories {
     NSLog(@"Refreshing!");
-    [CategoryStore fetchCategories:^{
+    [ApplicationStore fetchCategories:^{
         self.categoriesArray = [Category allObjects];
         [self.tableView reloadData];
     }];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 100;
+}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     

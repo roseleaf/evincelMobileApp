@@ -8,9 +8,13 @@
 
 #import "Website.h"
 #import <RestKit/RestKit.h>
-#import "TFHpple.h"
 
 @implementation Website
+@dynamic page_title;
+@dynamic url;
+@dynamic image;
+@dynamic category_id;
+@dynamic website_id;
 
 - (id)init
 {
@@ -19,33 +23,6 @@
         WEBSITES = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
-
--(UIImage*) hppleParseWithLink:(NSURL *)url {
-    NSData  *data      = [NSData dataWithContentsOfURL:url];
-    TFHpple *doc       = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements  = [doc searchWithXPathQuery:@"//link[@rel='icon']"]; //grab favicon
-    
-    if(![elements count]>=1){
-        elements  = [doc searchWithXPathQuery:@"//link[@rel='shortcut icon']"]; //grab favicon
-    }
-    if([elements count]>=1){
-        
-        TFHppleElement *element = [elements objectAtIndex:0];
-        NSString *srcString = [element objectForKey:@"href"]; //grab favicon src
-        
-        
-        NSURL *url = [NSURL URLWithString:srcString];
-        NSData *srcData = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [[UIImage alloc] initWithData:srcData];
-        
-        NSLog(@"Element <src> parsed: %@",srcString);
-        NSLog(@"%@", image);
-        return image;
-    }
-    
-    return nil;
 }
 
 @end

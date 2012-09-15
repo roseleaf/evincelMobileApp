@@ -8,13 +8,14 @@
 
 #import "SearchViewController.h"
 #import "WebsiteViewController.h"
-#import "WebsiteStore.h"
 #import "TopicalHeader.h"
 #import "CategoryCell.h"
+#import "ApplicationStore.h"
+#import "Website.h"
 #import <RestKit/RestKit.h>
 
 @interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UISearchBarDelegate>
-
+@property (strong)NSArray* websitesArray;
 @property (strong)NSString* searchTerm;
 @end
 
@@ -32,7 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.websitesArray = [NSArray new];
+
     self.tableView = [[UITableView alloc]init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -40,6 +42,28 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
 }
+
+-(void)refreshWebsites{
+    NSLog(@"Refreshing Websites");
+    [ApplicationStore fetchWebsites:^{
+        self.websitesArray = [self selectWebsites];
+        [self.tableView reloadData];
+    }];
+}
+-(NSArray*)selectWebsites{
+    NSManagedObjectContext* thisContext = [ApplicationStore context];
+    
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Website" inManagedObjectContext:thisContext];
+    NSFetchRequest* request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDescription];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat: @"(page_title LIKE %@) OR (url LIKE %@)", self.searchTerm, self.searchTerm]];
+
+    NSError* error = nil;
+    NSArray* array = [[ApplicationStore context] executeFetchRequest:request error:&error];
+    return array;
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 90;
@@ -78,15 +102,12 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     self.searchTerm = searchBar.text;
-    [[WebsiteStore sharedStore]websitesBySearchTerm:self.searchTerm withBlock:^{
-        [self.tableView reloadData];
-    }];
+    [self refreshWebsites];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSMutableArray* websites = [WebsiteStore sharedStore].results;
-    if ([websites count]>0) {
-        return [websites count];
+    if ([self.websitesArray count]>0) {
+        return [self.websitesArray count];
     } else {
         return 1;
     }
@@ -104,8 +125,8 @@
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
     
     //extract data and populate cells
-    if ([[WebsiteStore sharedStore].results count]>0){
-    Website* currentSite = [[WebsiteStore sharedStore].results objectAtIndex:indexPath.row];
+    if ([self.websitesArray count]>0){
+    Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
         if (currentSite.page_title!=NULL) {
             cell.primaryLabel.text = currentSite.page_title;
         } else {
@@ -135,7 +156,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-        Website* currentSite = [[WebsiteStore sharedStore].results objectAtIndex:indexPath.row];
+        Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
     
     WebsiteViewController* websiteView = [WebsiteViewController new];
     websiteView.website = currentSite;

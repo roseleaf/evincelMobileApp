@@ -10,14 +10,14 @@
 #import "WebsiteViewController.h"
 #import "CategoryCell.h"
 #import "TopicalHeader.h"
-#import "WebsiteStore.h"
+#import "Website.h"
 #import <RestKit/RestKit.h>
+#import "ApplicationStore.h"
 
 
 @interface WebsitesByCategoryViewController () <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, UINavigationControllerDelegate, RKRequestDelegate, NSXMLParserDelegate> {
     NSMutableArray* websitesArray;
 }
-
 @property UIButton* backButton;
 @property UIImageView* header;
 @end
@@ -38,20 +38,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[WebsiteStore sharedStore]websitesByCategoryFetcherWithID:[self.category objectForKey:@"category_id"] withBlock:^{
-        [self.tableView reloadData];
-    }];
+
+    self.websitesArray = [self selectWebsites];
+    if(self.websitesArray.count == 0) {
+        [self refreshWebsites];
+    };
     
-    self.tableView = [[UITableView alloc]init];
+    //self.tableView = [[UITableView alloc]init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     self.tableView.rowHeight = 100;
     
-    [[WebsiteStore sharedStore]websitesByCategory:[self.category objectForKey:@"category_id"] withBlock:^(NSArray* websites){
-        [self.tableView reloadData];
-    }];
+
+    
+}
+
+-(void)refreshWebsites{
+    NSLog(@"Refreshing Websites");
+     [ApplicationStore fetchWebsites:^{
+         self.websitesArray = [self selectWebsites];
+         [self.tableView reloadData];
+     }];
+}
+
+-(NSArray*)selectWebsites{
+    NSManagedObjectContext* thisContext = [ApplicationStore context];
+    
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Website" inManagedObjectContext:thisContext];
+    NSFetchRequest* request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDescription];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"category_id==%@", [self.category valueForKey:@"category_id"]]];
+    NSError* error = nil;
+    NSArray* array = [[ApplicationStore context] executeFetchRequest:request error:&error];
+    return array;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,18 +122,20 @@
     
     return view;
 }
--(void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
+-(UIImage*)getFaviconForSite:(Website*)website{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http.*?//" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSString* baseDomain = [regex stringByReplacingMatchesInString:website.url options:0 range:NSMakeRange(0, [website.url length]) withTemplate:@""];
+    NSURL* faviconPath = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/s2/favicons?domain=%@", baseDomain]];
+    NSData* data = [NSData dataWithContentsOfURL:faviconPath];
+    return [UIImage imageWithData:data];
 }
 
 
 
 //UITableView Delegate Methods:
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    id catId = [self.category valueForKey:@"id"];
-    NSArray* array = [[[WebsiteStore sharedStore]allWebsites] objectForKey:catId];
     
-    int count = [array count];
+    int count = [self.websitesArray count];
     return count;
     NSLog(@"!!!! %d", count);
 }
@@ -127,13 +151,8 @@
     
     UIImage* rowBackground = [UIImage imageNamed:@"middleRow.png"];
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
-
     
-    id catID = [self.category valueForKey:@"id"];
-    NSArray* category = [[[WebsiteStore sharedStore]allWebsites]objectForKey:catID];
-                         
-                         
-    Website* currentSite = [category objectAtIndex:indexPath.row];
+    Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
     
     if (currentSite.page_title!=NULL) {
         cell.primaryLabel.text = currentSite.page_title;
@@ -142,9 +161,9 @@
     }
     
         
+
     cell.subtextLabel.text = currentSite.url;
-    
-    cell.faviconView.image = currentSite.image;
+    cell.faviconView.image = [self getFaviconForSite:currentSite];;
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
@@ -161,10 +180,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    id catID = [self.category valueForKey:@"id"];
-    NSArray* category = [[[WebsiteStore sharedStore]allWebsites]objectForKey:catID];
-    Website* currentSite = [category objectAtIndex:indexPath.row];
+    Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
 
     WebsiteViewController* websiteView = [WebsiteViewController new];
     websiteView.website = currentSite;
