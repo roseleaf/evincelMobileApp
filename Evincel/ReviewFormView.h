@@ -11,6 +11,7 @@
 
 @interface ReviewFormView : UIView <UITextFieldDelegate>
 @property int website_id;
+@property (strong) UIView* header;
 @property (strong) UITextField* commentField;
 @property (strong) NSString* ratingString;
 @property (strong)UIButton* submitButton;

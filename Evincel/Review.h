@@ -16,6 +16,6 @@
 @property (strong) NSString* platform;
 @property (strong) NSString* posted_by;
 @property int rating;
-@property int website_id;
+@property (strong)NSNumber* website_id;
 @property int review_id;
 @end

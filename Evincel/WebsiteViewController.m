@@ -187,6 +187,7 @@
 -(void)addReview{
     AddReviewViewController* arv = [AddReviewViewController new];
     arv.website_id = self.website.website_id;
+    arv.website_title = self.website.page_title;
     [self.navigationController pushViewController:arv animated:YES];
 }
 @end

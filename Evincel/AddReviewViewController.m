@@ -25,11 +25,26 @@
     }
     return self;
 }
+-(void)loadView{
+    self.formView = [ReviewFormView new];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.formView = [ReviewFormView new];
+    UILabel* headerLabel =
+    [[UILabel alloc]
+     initWithFrame:CGRectMake(10, 20, 300, 40)];
+    
+    headerLabel.textAlignment = UITextAlignmentCenter;
+    headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
+    headerLabel.shadowColor = [UIColor brownColor];
+    headerLabel.shadowOffset = CGSizeMake(0, 1);
+    headerLabel.font = [UIFont boldSystemFontOfSize:22];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    
+    headerLabel.text = [NSString stringWithFormat:@"Review for %@", self.website_title];
+    [self.formView.header addSubview:headerLabel];
     [self.formView.submitButton addTarget:self action:@selector(saveReview) forControlEvents:UIControlEventTouchDown];
     self.view = self.formView;
     
@@ -44,7 +59,8 @@
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     NSNumber* ratingNumber = [f numberFromString:self.formView.ratingString];
     [self.review setValue:ratingNumber forKey:@"rating"];
-    [self.review setValue:@(self.website_id) forKey:@"website_id"];
+    self.review.website_id = self.website_id;
+    //[self.review setValue:self.website_id forKey:@"website_id"];
     [self.review setValue:self.formView.commentField.text forKey:@"comment"];
     [self.review setValue:@"Evincel Mobile App" forKey:@"browser"];
     [self.review setValue:[RKClient sharedClient].username forKey:@"posted_by"];

@@ -110,9 +110,6 @@ static RKObjectManager* evincelObjectManager;
 }
 
 
-
-
-
 //Review Methods:
 +(void)setupReviewMapping {
     RKManagedObjectMapping* reviewMapping = [RKManagedObjectMapping mappingForClass:[Review class] inManagedObjectStore:evincelObjectManager.objectStore]; 

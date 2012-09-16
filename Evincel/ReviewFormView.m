@@ -68,10 +68,11 @@ UILabel* label;
         [self addSubview:self.commentField];
         [self addSubview:self.submitButton];
         
-        UIView* header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 100)];
-        header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
-        [header addSubview:[self backButton]];
+        self.header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 100)];
+        self.header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
+        [self.header addSubview:[self backButton]];
         
+
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
         self.backButton.frame = CGRectMake(10.0, 55.0, 100.0, 40.0);
@@ -79,8 +80,8 @@ UILabel* label;
         [self.backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
         [self.backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [header addSubview:self.backButton];
-        [self addSubview:header];
+        [self.header addSubview:self.backButton];
+        [self addSubview:self.header];
 
     }
     return self;
