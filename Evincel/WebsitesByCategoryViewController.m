@@ -54,7 +54,9 @@
 
     
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
 -(void)refreshWebsites{
     NSLog(@"Refreshing Websites");
      [ApplicationStore fetchWebsites:^{
@@ -111,7 +113,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(dismissToCategories) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 60.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

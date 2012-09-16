@@ -5,7 +5,6 @@
 //  Created by Rose CW on 9/7/12.
 //  Copyright (c) 2012 Rose Trujillo. All rights reserved.
 //
-
 #import "SearchViewController.h"
 #import "WebsiteViewController.h"
 #import "TopicalHeader.h"
@@ -50,15 +49,15 @@
         [self.tableView reloadData];
     }];
 }
+
 -(NSArray*)selectWebsites{
     NSManagedObjectContext* thisContext = [ApplicationStore context];
-    
     NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Website" inManagedObjectContext:thisContext];
     NSFetchRequest* request = [[NSFetchRequest alloc]init];
     [request setEntity:entityDescription];
+//    [request setPredicate:[NSPredicate predicateWithFormat: @"page_title LIKE %@ OR url LIKE %@ OR page_title CONTAINS %@", self.searchTerm, self.searchTerm, self.searchTerm]];
+    [request setPredicate:[NSPredicate predicateWithFormat: @"page_title LIKE[cd] %@ || page_title CONTAINS[cd] %@ || url LIKE[cd] %@", self.searchTerm, self.searchTerm, self.searchTerm]];
     
-    [request setPredicate:[NSPredicate predicateWithFormat: @"(page_title LIKE %@) OR (url LIKE %@)", self.searchTerm, self.searchTerm]];
-
     NSError* error = nil;
     NSArray* array = [[ApplicationStore context] executeFetchRequest:request error:&error];
     return array;
@@ -90,10 +89,10 @@
     headerLabel.text = @"Search Evincel";
     [header addSubview:headerLabel];
     
-    UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(60, 100, 190, 30)];
+    UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(60, 60, 190, 30)];
     searchBar.delegate = self;
     searchBar.placeholder = @"Search All Sites";
-    searchBar.backgroundImage = [UIImage imageNamed:@"buttonLong.png"];
+    searchBar.backgroundImage = [UIImage imageNamed:@"shadowbar.png"];
 
     [header addSubview:searchBar];
 
@@ -139,7 +138,7 @@
     } else {
         cell.primaryLabel.text = @"No results!";
         cell.subtextLabel.font = [UIFont systemFontOfSize:10];
-        cell.subtextLabel.text = @"Try a different term or submit a website";
+        cell.subtextLabel.text = @"Try a different term";
     }
     
 
@@ -169,7 +168,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 100.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

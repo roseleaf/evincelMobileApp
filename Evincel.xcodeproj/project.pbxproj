@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05EDAFF1A484444891594CF2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F71361708474F2D9D7D87AD /* libPods.a */; };
+		961594491605A130008482E2 /* input.png in Resources */ = {isa = PBXBuildFile; fileRef = 961594481605A130008482E2 /* input.png */; };
+		9615945316062D08008482E2 /* shadowbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9615945216062D08008482E2 /* shadowbar.png */; };
 		965A606E15FAA00E000DF824 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A606D15FAA00E000DF824 /* UIKit.framework */; };
 		965A607015FAA00E000DF824 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A606F15FAA00E000DF824 /* Foundation.framework */; };
 		965A607215FAA00E000DF824 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A607115FAA00E000DF824 /* CoreGraphics.framework */; };
@@ -40,12 +42,44 @@
 		96BEE8C91603A8AE008E74E7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BEE8C81603A8AE008E74E7 /* CoreData.framework */; };
 		96BEE8D71603EF71008E74E7 /* EvincelModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8D51603EF70008E74E7 /* EvincelModel.xcdatamodeld */; };
 		96BEE8DA1603EFD5008E74E7 /* ApplicationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */; };
+		96BEE90116053654008E74E7 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BEE8FF16053639008E74E7 /* libQuickDialog.a */; };
+		96BEE9061605368E008E74E7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BEE9041605368E008E74E7 /* CoreLocation.framework */; };
+		96BEE9071605368E008E74E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BEE9051605368E008E74E7 /* MapKit.framework */; };
+		96BEE909160540FE008E74E7 /* thinheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 96BEE908160540FE008E74E7 /* thinheader.png */; };
+		96BEE90B16054138008E74E7 /* thinheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96BEE90A16054138008E74E7 /* thinheader@2x.png */; };
+		96BEE91216056CD2008E74E7 /* ReviewFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BEE91116056CD2008E74E7 /* ReviewFormView.m */; };
 		96E94F1015FC3D1700EC8E0C /* Website.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E94F0F15FC3D1700EC8E0C /* Website.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96BEE8FC16053639008E74E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		96BEE8FE16053639008E74E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		96BEE9021605366F008E74E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2F71361708474F2D9D7D87AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43981B42E9EF4343BE3D19B3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		961594481605A130008482E2 /* input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = input.png; path = evincelAssets/input.png; sourceTree = "<group>"; };
+		9615945216062D08008482E2 /* shadowbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadowbar.png; sourceTree = "<group>"; };
 		965A606915FAA00E000DF824 /* Evincel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evincel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		965A606D15FAA00E000DF824 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		965A606F15FAA00E000DF824 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,7 +110,7 @@
 		965A60D215FBACF2000DF824 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		965A60DB15FBBD53000DF824 /* WebsitesByCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsitesByCategoryViewController.h; sourceTree = "<group>"; };
 		965A60DC15FBBD53000DF824 /* WebsitesByCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsitesByCategoryViewController.m; sourceTree = "<group>"; };
-		96BEE85815FE7CCC008E74E7 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
+		96BEE85815FE7CCC008E74E7 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "header@2x.png"; path = "../header@2x.png"; sourceTree = "<group>"; };
 		96BEE86215FEA2E2008E74E7 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteViewController.h; sourceTree = "<group>"; };
 		96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteViewController.m; sourceTree = "<group>"; };
 		96BEE89616000BCC008E74E7 /* TopicalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicalHeader.h; sourceTree = "<group>"; };
@@ -95,6 +129,13 @@
 		96BEE8D61603EF71008E74E7 /* EvincelModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EvincelModel.xcdatamodel; sourceTree = "<group>"; };
 		96BEE8D81603EFD4008E74E7 /* ApplicationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStore.h; sourceTree = "<group>"; };
 		96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStore.m; sourceTree = "<group>"; };
+		96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
+		96BEE9041605368E008E74E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		96BEE9051605368E008E74E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		96BEE908160540FE008E74E7 /* thinheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinheader.png; sourceTree = "<group>"; };
+		96BEE90A16054138008E74E7 /* thinheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thinheader@2x.png"; sourceTree = "<group>"; };
+		96BEE91016056CD2008E74E7 /* ReviewFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewFormView.h; sourceTree = "<group>"; };
+		96BEE91116056CD2008E74E7 /* ReviewFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewFormView.m; sourceTree = "<group>"; };
 		96E94F0E15FC3D1700EC8E0C /* Website.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Website.h; sourceTree = "<group>"; };
 		96E94F0F15FC3D1700EC8E0C /* Website.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Website.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +145,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96BEE9061605368E008E74E7 /* CoreLocation.framework in Frameworks */,
+				96BEE9071605368E008E74E7 /* MapKit.framework in Frameworks */,
+				96BEE90116053654008E74E7 /* libQuickDialog.a in Frameworks */,
 				96BEE8C91603A8AE008E74E7 /* CoreData.framework in Frameworks */,
 				965A609C15FAA8C3000DF824 /* QuartzCore.framework in Frameworks */,
 				965A606E15FAA00E000DF824 /* UIKit.framework in Frameworks */,
@@ -137,6 +181,9 @@
 		965A606C15FAA00E000DF824 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96BEE9041605368E008E74E7 /* CoreLocation.framework */,
+				96BEE9051605368E008E74E7 /* MapKit.framework */,
+				96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */,
 				96BEE8C81603A8AE008E74E7 /* CoreData.framework */,
 				965A609B15FAA8C3000DF824 /* QuartzCore.framework */,
 				965A606D15FAA00E000DF824 /* UIKit.framework */,
@@ -152,7 +199,7 @@
 			children = (
 				96BEE89A1600195C008E74E7 /* Controllers */,
 				96BEE89B16001983008E74E7 /* Models */,
-				96BEE89C1600198E008E74E7 /* Elements */,
+				96BEE89C1600198E008E74E7 /* View Elements */,
 				965A607C15FAA00E000DF824 /* AppDelegate.h */,
 				965A607D15FAA00E000DF824 /* AppDelegate.m */,
 				965A607415FAA00E000DF824 /* Supporting Files */,
@@ -163,7 +210,7 @@
 		965A607415FAA00E000DF824 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96BEE85815FE7CCC008E74E7 /* header@2x.png */,
+				961594481605A130008482E2 /* input.png */,
 				965A608915FAA529000DF824 /* evincelAssets */,
 				965A607515FAA00E000DF824 /* Evincel-Info.plist */,
 				965A607615FAA00E000DF824 /* InfoPlist.strings */,
@@ -176,9 +223,13 @@
 		965A608915FAA529000DF824 /* evincelAssets */ = {
 			isa = PBXGroup;
 			children = (
+				9615945216062D08008482E2 /* shadowbar.png */,
+				96BEE85815FE7CCC008E74E7 /* header@2x.png */,
 				965A608A15FAA529000DF824 /* background.png */,
 				965A608B15FAA529000DF824 /* buttonLong.png */,
 				965A60BE15FADF96000DF824 /* tableHeader@2x.png */,
+				96BEE908160540FE008E74E7 /* thinheader.png */,
+				96BEE90A16054138008E74E7 /* thinheader@2x.png */,
 				965A608C15FAA529000DF824 /* buttonShort.png */,
 				965A60C015FAE009000DF824 /* tableViewSmaller.png */,
 				965A60AE15FABC2E000DF824 /* middleRow.png */,
@@ -226,9 +277,11 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		96BEE89C1600198E008E74E7 /* Elements */ = {
+		96BEE89C1600198E008E74E7 /* View Elements */ = {
 			isa = PBXGroup;
 			children = (
+				96BEE91016056CD2008E74E7 /* ReviewFormView.h */,
+				96BEE91116056CD2008E74E7 /* ReviewFormView.m */,
 				96BEE89616000BCC008E74E7 /* TopicalHeader.h */,
 				96BEE89716000BCD008E74E7 /* TopicalHeader.m */,
 				965A60D115FBACF2000DF824 /* CategoryCell.h */,
@@ -236,7 +289,16 @@
 				96BEE8A616015657008E74E7 /* ReviewCell.h */,
 				96BEE8A716015657008E74E7 /* ReviewCell.m */,
 			);
-			name = Elements;
+			name = "View Elements";
+			sourceTree = "<group>";
+		};
+		96BEE8F416053639008E74E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96BEE8FD16053639008E74E7 /* QuickDialogExample.app */,
+				96BEE8FF16053639008E74E7 /* libQuickDialog.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +316,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				96BEE9031605366F008E74E7 /* PBXTargetDependency */,
 			);
 			name = Evincel;
 			productName = Evincel;
@@ -279,12 +342,35 @@
 			mainGroup = 965A605E15FAA00E000DF824;
 			productRefGroup = 965A606A15FAA00E000DF824 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 96BEE8F416053639008E74E7 /* Products */;
+					ProjectRef = 96BEE8F316053639008E74E7 /* QuickDialog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				965A606815FAA00E000DF824 /* Evincel */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		96BEE8FD16053639008E74E7 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 96BEE8FC16053639008E74E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		96BEE8FF16053639008E74E7 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 96BEE8FE16053639008E74E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		965A606715FAA00E000DF824 /* Resources */ = {
@@ -302,6 +388,10 @@
 				965A60BF15FADF96000DF824 /* tableHeader@2x.png in Resources */,
 				965A60C115FAE009000DF824 /* tableViewSmaller.png in Resources */,
 				96BEE85915FE7CCC008E74E7 /* header@2x.png in Resources */,
+				96BEE909160540FE008E74E7 /* thinheader.png in Resources */,
+				96BEE90B16054138008E74E7 /* thinheader@2x.png in Resources */,
+				961594491605A130008482E2 /* input.png in Resources */,
+				9615945316062D08008482E2 /* shadowbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,10 +436,19 @@
 				96BEE8C716039D8E008E74E7 /* AddReviewViewController.m in Sources */,
 				96BEE8D71603EF71008E74E7 /* EvincelModel.xcdatamodeld in Sources */,
 				96BEE8DA1603EFD5008E74E7 /* ApplicationStore.m in Sources */,
+				96BEE91216056CD2008E74E7 /* ReviewFormView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96BEE9031605366F008E74E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 96BEE9021605366F008E74E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		965A607615FAA00E000DF824 /* InfoPlist.strings */ = {
@@ -420,6 +519,7 @@
 				GCC_PREFIX_HEADER = "Evincel/Evincel-Prefix.pch";
 				INFOPLIST_FILE = "Evincel/Evincel-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -432,6 +532,7 @@
 				GCC_PREFIX_HEADER = "Evincel/Evincel-Prefix.pch";
 				INFOPLIST_FILE = "Evincel/Evincel-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

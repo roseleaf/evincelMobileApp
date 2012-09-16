@@ -7,9 +7,12 @@
 //
 
 #import "AddReviewViewController.h"
+#import "ReviewFormView.h"
+#import "ApplicationStore.h"
+#import <RestKit/RestKit.h>
 
-@interface AddReviewViewController ()
-
+@interface AddReviewViewController () 
+@property (strong)ReviewFormView* formView;
 @end
 
 @implementation AddReviewViewController
@@ -26,25 +29,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    UIView* header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 100)];
-    header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
-    [header addSubview:[self backButton]];
-    [self.view addSubview:header];
-    UITextField* rating = [[UITextField alloc]initWithFrame:CGRectMake(150, 100, 75, 40)];
+    self.formView = [ReviewFormView new];
+    [self.formView.submitButton addTarget:self action:@selector(saveReview) forControlEvents:UIControlEventTouchDown];
+    self.view = self.formView;
     
+    [self.formView.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
 }
 
-- (UIButton*)backButton{
-    UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
-    UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
-    [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    return backButton;
+-(void)saveReview{
+    NSEntityDescription* review = [NSEntityDescription entityForName:@"Review" inManagedObjectContext:[ApplicationStore context]];
+    self.review = [[Review alloc]initWithEntity:review insertIntoManagedObjectContext:[ApplicationStore context]];
+
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber* ratingNumber = [f numberFromString:self.formView.ratingString];
+    [self.review setValue:ratingNumber forKey:@"rating"];
+    [self.review setValue:@(self.website_id) forKey:@"website_id"];
+    [self.review setValue:self.formView.commentField.text forKey:@"comment"];
+    [self.review setValue:@"Evincel Mobile App" forKey:@"browser"];
+    [self.review setValue:[RKClient sharedClient].username forKey:@"posted_by"];
+    [self.review setValue:@"iOS" forKey:@"platform"];
+    NSLog(@"The review:%@", self.review);
+    [ApplicationStore saveReview:self.review];
 }
+
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.formView.commentField resignFirstResponder];
+}
+
+
+-(void)goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)toCategories{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

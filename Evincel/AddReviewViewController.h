@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Review.h"
 
 @interface AddReviewViewController : UIViewController
-
+@property (strong) Review* review;
+@property int website_id;
+@property (nonatomic, retain) IBOutlet UITextField* commentLabel;
+//@property (strong) UI
 @end

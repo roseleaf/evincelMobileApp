@@ -102,7 +102,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(dismissToHome) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 55.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 55.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

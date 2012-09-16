@@ -11,6 +11,7 @@
 #import "Review.h"
 #import "ReviewCell.h"
 #import "ApplicationStore.h"
+#import "AddReviewViewController.h"
 
 @interface WebsiteViewController ()
 @property (strong)NSArray* reviews;
@@ -89,6 +90,7 @@
     UIView* header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 200)];;
     header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
     [header addSubview:[self backButton]];
+    [header addSubview:[self addButton]];
     UILabel* headerLabel =
     [[UILabel alloc]
      initWithFrame:CGRectMake(10, 20, 300, 40)];
@@ -163,7 +165,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 60.0, 100.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -172,5 +174,19 @@
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(UIButton*)addButton{
+    UIButton* addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addButton addTarget:self action:@selector(addReview) forControlEvents:UIControlEventTouchDown];
+    [addButton setTitle:@"+" forState:UIControlStateNormal];
+    addButton.frame = CGRectMake(275.0, 60.0, 40.0, 40.0);
+    UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
+    [addButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    return addButton;
+}
+-(void)addReview{
+    AddReviewViewController* arv = [AddReviewViewController new];
+    arv.website_id = self.website.website_id;
+    [self.navigationController pushViewController:arv animated:YES];
+}
 @end

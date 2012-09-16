@@ -35,11 +35,11 @@
     [header addSubview:[self backButton]];
     [self.view addSubview:header];
     self.usernameField = [[UITextField alloc]initWithFrame:CGRectMake(50, 110, 200, 25)];
-    self.usernameField.backgroundColor = [UIColor whiteColor];
+    self.usernameField.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"input.png"]];
     self.usernameField.placeholder = @"Username";
     [self.view addSubview:self.usernameField];
     self.passwordField = [[UITextField alloc]initWithFrame:CGRectMake(50, 160, 200, 25)];
-    self.passwordField.backgroundColor = [UIColor whiteColor];
+    self.passwordField.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"input.png"]];
     self.passwordField.placeholder = @"Password";
     self.passwordField.secureTextEntry = YES;
     [self.view addSubview:self.passwordField];
@@ -110,7 +110,10 @@
     [RKClient sharedClient].username = nil;
     [RKClient sharedClient].password = nil;
 }
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+}
 //- (void)createObject {
 //    Review* joeBlow = [Review new];
 //    joeBlow.name = @"Joe Blow";

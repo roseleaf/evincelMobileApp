@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Review.h"
 
 @interface ApplicationStore : NSObject
 +(void)setUpApplicationStore;
@@ -14,4 +15,5 @@
 +(void)fetchWebsites:(void(^)(void))completionBlock;
 +(void)fetchReviews:(void(^)(void))completionBlock;
 +(NSManagedObjectContext*)context;
++(void)saveReview:(Review*)review;
 @end
