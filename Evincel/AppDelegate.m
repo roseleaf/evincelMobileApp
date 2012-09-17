@@ -36,7 +36,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = navControl;
-    self.window.backgroundColor = [UIColor blackColor];
+    
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview11.jpeg"]];
     [self.window makeKeyAndVisible];
     return YES;
 }

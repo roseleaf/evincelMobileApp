@@ -27,6 +27,7 @@ static RKObjectManager* evincelObjectManager;
     [self setupcategoryMapping];
     [self setupWebsiteMapping];
     [self setupReviewMapping];
+    [self setupUserMapping];
 }
 
 +(NSManagedObjectContext*)context{
@@ -153,7 +154,50 @@ static RKObjectManager* evincelObjectManager;
     [evincelObjectManager postObject:review delegate:nil];
 }
 
++(void)setupUserMapping {
+    RKManagedObjectMapping* userMapping = [RKManagedObjectMapping mappingForClass:[User class] inManagedObjectStore:evincelObjectManager.objectStore];
+    userMapping.objectClass = [User class];
+    [userMapping mapKeyPath:@"id" toAttribute:@"user_id"];
+    [userMapping mapAttributes:@"username", nil];
+    [userMapping mapAttributes:@"email", nil];
+    [userMapping mapAttributes:@"password", nil];
+    [userMapping mapAttributes:@"password_confirmation", nil];
+    [userMapping mapAttributes:@"active", nil];
+    
+    userMapping.primaryKeyAttribute = @"user_id";
+    
+    [evincelObjectManager.mappingProvider addObjectMapping:userMapping];
+    RKObjectMapping* serializationMapping = userMapping.inverseMapping;
+    serializationMapping.rootKeyPath = @"user";
+    
+    [evincelObjectManager.mappingProvider setSerializationMapping:serializationMapping forClass:[User class]];
+    
+    [evincelObjectManager.router routeClass:[User class] toResourcePath:@"/users.json"];
+}
 
++(void)saveUser:(User *)user{
+    [evincelObjectManager postObject:user usingBlock:^(RKObjectLoader *loader) {
+        loader.onDidFailLoadWithError = ^(NSError* error){
+        NSLog(@"Error saving user: %@", error);
+        };
+    }];
+    [evincelObjectManager postObject:user delegate:nil];
+    
+}
+
++(void)fetchUser:(void(^)(void))completionBlock{
+    [evincelObjectManager loadObjectsAtResourcePath:@"/users.json" usingBlock:^(RKObjectLoader *loader) {
+        loader.objectMapping = [evincelObjectManager.mappingProvider objectMappingForClass:[User class]];
+        
+        loader.onDidLoadObjects = ^(NSArray* objects) {
+            //if (completionBlock)
+            completionBlock();
+        };
+        loader.onDidFailLoadWithError = ^(NSError* err) {
+            NSLog(@"%@", err);
+        };
+    }];
+}
 
 //-(void)reviewsByWebsite: (id)siteId WithBlock:(void(^)(NSArray*))block {
 //    id params = siteId;

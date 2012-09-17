@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview11.jpeg"]];
     self.navigationController.navigationBarHidden = YES;
     self.categoriesArray = [Category allObjects];
 
@@ -51,7 +52,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 100;
     //categoriesArray = [NSMutableArray new];
 
@@ -102,7 +103,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(dismissToHome) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(5.0, 55.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 10.0, 50.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -155,15 +156,24 @@
     cell.primaryLabel.text = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"name"];
     cell.subtextLabel.text = @"";
 
-    NSString* baseString = @"http://evincel.com";
-    NSString* imageUrl = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"image"];
-    NSString* srcString = [baseString stringByAppendingString:imageUrl];
+
     
-    NSURL *url = [NSURL URLWithString:srcString];
-    NSData *srcData = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [[UIImage alloc] initWithData:srcData];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString* baseString = @"http://evincel.com";
+        NSString* imageUrl = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"image"];
+        NSString* srcString = [baseString stringByAppendingString:imageUrl];
+        
+        NSURL *url = [NSURL URLWithString:srcString];
+        NSData *srcData = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [[UIImage alloc] initWithData:srcData];
+        cell.topicImageView.image = image;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.view setNeedsDisplay];
+        });
+    });
     
-    cell.topicImageView.image = image;
+    
     [UIImage imageNamed:@"circles.png"];
 
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];

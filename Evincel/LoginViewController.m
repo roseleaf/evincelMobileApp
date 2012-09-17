@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "Review.h"
 #import "HomeViewController.h"
+#import "SignUpViewController.h"
 #import <RestKit/RestKit.h>
 
 @interface LoginViewController () <RKRequestDelegate>
@@ -51,22 +52,36 @@
     [submitButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:submitButton];
+    [self.view addSubview:[self signUpButton]];
 }
 -(UIButton*)backButton{
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(105.0, 60.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(10.0, 10.0, 50.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     return backButton;
 }
+-(UIButton*)signUpButton{
+    UIButton* signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [signUpButton addTarget:self action:@selector(signUp) forControlEvents:UIControlEventTouchDown];
+    [signUpButton setTitle:@"Sign Up!" forState:UIControlStateNormal];
+    signUpButton.frame = CGRectMake(75.0, 250.0, 100.0, 40.0);
+    UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
+    [signUpButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    return signUpButton;
+}
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+-(void)signUp{
+    SignUpViewController* signUp = [SignUpViewController new];
+    [self.navigationController pushViewController:signUp animated:YES];
+}
 
 
 
@@ -114,28 +129,7 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
 }
-//- (void)createObject {
-//    Review* joeBlow = [Review new];
-//    joeBlow.name = @"Joe Blow";
-//    joeBlow.company = @"Two Toasters";
-//    
-//    // POST to /contacts
-//    [ [RKClient sharedClient] postObject:joeBlow delegate:self];
-//}
 
-//    NSDictionary* params = [NSDictionary dictionaryWithObject:@"RestKit" forKey:@"Sender"];
-//[ [RKClient sharedClient] post:@"/other.json" params:params delegate:self];
-//if ([request isPOST]) {
-
-// Handling POST /other.json
-//if ([response isJSON]) {
-//    NSLog(@"Got a JSON response back from our POST!");
-//}
-
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//}
 
 
 @end

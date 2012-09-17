@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Review.h"
 
-@interface ReviewFormView : UIView <UITextFieldDelegate>
+@interface ReviewFormView : UIScrollView <UITextFieldDelegate>
 @property int website_id;
 @property (strong) UIView* header;
 @property (strong) UITextField* commentField;

@@ -25,6 +25,7 @@
     }
     return self;
 }
+
 -(void)loadView{
     self.formView = [ReviewFormView new];
 }
@@ -34,7 +35,7 @@
     [super viewDidLoad];
     UILabel* headerLabel =
     [[UILabel alloc]
-     initWithFrame:CGRectMake(10, 20, 300, 40)];
+     initWithFrame:CGRectMake(10, 60, 300, 40)];
     
     headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
@@ -60,13 +61,13 @@
     NSNumber* ratingNumber = [f numberFromString:self.formView.ratingString];
     [self.review setValue:ratingNumber forKey:@"rating"];
     self.review.website_id = self.website_id;
-    //[self.review setValue:self.website_id forKey:@"website_id"];
     [self.review setValue:self.formView.commentField.text forKey:@"comment"];
     [self.review setValue:@"Evincel Mobile App" forKey:@"browser"];
     [self.review setValue:[RKClient sharedClient].username forKey:@"posted_by"];
     [self.review setValue:@"iOS" forKey:@"platform"];
     NSLog(@"The review:%@", self.review);
     [ApplicationStore saveReview:self.review];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

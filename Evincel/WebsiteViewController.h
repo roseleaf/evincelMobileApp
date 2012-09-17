@@ -11,4 +11,5 @@
 
 @interface WebsiteViewController : UITableViewController
 @property (strong) Website* website;
+@property (strong) UIButton* signInButton;
 @end

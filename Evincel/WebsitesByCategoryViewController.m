@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview11.jpeg"]];
     self.websitesArray = [self selectWebsites];
     if(self.websitesArray.count == 0) {
         [self refreshWebsites];
@@ -48,7 +48,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 100;
     
 
@@ -113,7 +113,7 @@
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton addTarget:self action:@selector(dismissToCategories) forControlEvents:UIControlEventTouchDown];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(5.0, 60.0, 100.0, 40.0);
+    backButton.frame = CGRectMake(5.0, 10.0, 50.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -161,11 +161,17 @@
     } else {
         cell.primaryLabel.text = currentSite.url;
     }
-    
+    cell.faviconView.image = [self getFaviconForSite:currentSite];    
         
 
     cell.subtextLabel.text = currentSite.url;
-    cell.faviconView.image = [self getFaviconForSite:currentSite];;
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        cell.faviconView.image = [self getFaviconForSite:currentSite];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.view setNeedsDisplay];
+//        });
+//    });
     
     UIImageView* cellImageView = [[UIImageView alloc]initWithImage:rowBackground];
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];

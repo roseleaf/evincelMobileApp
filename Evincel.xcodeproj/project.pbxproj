@@ -10,6 +10,10 @@
 		05EDAFF1A484444891594CF2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F71361708474F2D9D7D87AD /* libPods.a */; };
 		961594491605A130008482E2 /* input.png in Resources */ = {isa = PBXBuildFile; fileRef = 961594481605A130008482E2 /* input.png */; };
 		9615945316062D08008482E2 /* shadowbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9615945216062D08008482E2 /* shadowbar.png */; };
+		96159456160696EC008482E2 /* preview11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 96159455160696EC008482E2 /* preview11.jpeg */; };
+		961594591606A50A008482E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961594581606A50A008482E2 /* SignUpViewController.m */; };
+		9615945C1606A9D6008482E2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9615945B1606A9D6008482E2 /* User.m */; };
+		9615945F1606AB79008482E2 /* UserFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9615945E1606AB79008482E2 /* UserFormView.m */; };
 		965A606E15FAA00E000DF824 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A606D15FAA00E000DF824 /* UIKit.framework */; };
 		965A607015FAA00E000DF824 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A606F15FAA00E000DF824 /* Foundation.framework */; };
 		965A607215FAA00E000DF824 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965A607115FAA00E000DF824 /* CoreGraphics.framework */; };
@@ -80,6 +84,13 @@
 		43981B42E9EF4343BE3D19B3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		961594481605A130008482E2 /* input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = input.png; path = evincelAssets/input.png; sourceTree = "<group>"; };
 		9615945216062D08008482E2 /* shadowbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadowbar.png; sourceTree = "<group>"; };
+		96159455160696EC008482E2 /* preview11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = preview11.jpeg; sourceTree = "<group>"; };
+		961594571606A50A008482E2 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		961594581606A50A008482E2 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		9615945A1606A9D6008482E2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		9615945B1606A9D6008482E2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		9615945D1606AB79008482E2 /* UserFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFormView.h; sourceTree = "<group>"; };
+		9615945E1606AB79008482E2 /* UserFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFormView.m; sourceTree = "<group>"; };
 		965A606915FAA00E000DF824 /* Evincel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evincel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		965A606D15FAA00E000DF824 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		965A606F15FAA00E000DF824 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -223,6 +234,7 @@
 		965A608915FAA529000DF824 /* evincelAssets */ = {
 			isa = PBXGroup;
 			children = (
+				96159455160696EC008482E2 /* preview11.jpeg */,
 				9615945216062D08008482E2 /* shadowbar.png */,
 				96BEE85815FE7CCC008E74E7 /* header@2x.png */,
 				965A608A15FAA529000DF824 /* background.png */,
@@ -257,6 +269,8 @@
 				96BEE8A416013DFF008E74E7 /* LoginViewController.m */,
 				96BEE8C516039D8E008E74E7 /* AddReviewViewController.h */,
 				96BEE8C616039D8E008E74E7 /* AddReviewViewController.m */,
+				961594571606A50A008482E2 /* SignUpViewController.h */,
+				961594581606A50A008482E2 /* SignUpViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +283,8 @@
 				96BEE8D91603EFD4008E74E7 /* ApplicationStore.m */,
 				96BEE8C216037CA3008E74E7 /* Category.h */,
 				96BEE8C316037CA3008E74E7 /* Category.m */,
+				9615945A1606A9D6008482E2 /* User.h */,
+				9615945B1606A9D6008482E2 /* User.m */,
 				96E94F0E15FC3D1700EC8E0C /* Website.h */,
 				96E94F0F15FC3D1700EC8E0C /* Website.m */,
 				96BEE89D160019A4008E74E7 /* Review.h */,
@@ -282,6 +298,8 @@
 			children = (
 				96BEE91016056CD2008E74E7 /* ReviewFormView.h */,
 				96BEE91116056CD2008E74E7 /* ReviewFormView.m */,
+				9615945D1606AB79008482E2 /* UserFormView.h */,
+				9615945E1606AB79008482E2 /* UserFormView.m */,
 				96BEE89616000BCC008E74E7 /* TopicalHeader.h */,
 				96BEE89716000BCD008E74E7 /* TopicalHeader.m */,
 				965A60D115FBACF2000DF824 /* CategoryCell.h */,
@@ -392,6 +410,7 @@
 				96BEE90B16054138008E74E7 /* thinheader@2x.png in Resources */,
 				961594491605A130008482E2 /* input.png in Resources */,
 				9615945316062D08008482E2 /* shadowbar.png in Resources */,
+				96159456160696EC008482E2 /* preview11.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +456,9 @@
 				96BEE8D71603EF71008E74E7 /* EvincelModel.xcdatamodeld in Sources */,
 				96BEE8DA1603EFD5008E74E7 /* ApplicationStore.m in Sources */,
 				96BEE91216056CD2008E74E7 /* ReviewFormView.m in Sources */,
+				961594591606A50A008482E2 /* SignUpViewController.m in Sources */,
+				9615945C1606A9D6008482E2 /* User.m in Sources */,
+				9615945F1606AB79008482E2 /* UserFormView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

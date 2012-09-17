@@ -20,6 +20,8 @@ UILabel* label;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 1.5);
+        self.scrollEnabled = YES;
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 
         ratingValues = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", nil];
@@ -75,7 +77,7 @@ UILabel* label;
 
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-        self.backButton.frame = CGRectMake(10.0, 55.0, 100.0, 40.0);
+        self.backButton.frame = CGRectMake(10.0, 10.0, 50.0, 40.0);
 
         [self.backButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
         [self.backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -92,7 +94,10 @@ UILabel* label;
     self.ratingString = [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]];
 }
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.commentField resignFirstResponder];
+    return NO;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

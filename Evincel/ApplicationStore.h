@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Review.h"
+#import "User.h"
 
 @interface ApplicationStore : NSObject
 +(void)setUpApplicationStore;
@@ -16,4 +17,5 @@
 +(void)fetchReviews:(void(^)(void))completionBlock;
 +(NSManagedObjectContext*)context;
 +(void)saveReview:(Review*)review;
++(void)saveUser:(User*)user;
 @end
