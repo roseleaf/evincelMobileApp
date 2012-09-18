@@ -84,7 +84,7 @@
     [self.view addSubview:self.header];
     UILabel *headerLabel =
     [[UILabel alloc]
-     initWithFrame:CGRectMake(10, 20, 300, 40)];
+     initWithFrame:CGRectMake(10, 60, 300, 40)];
     headerLabel.text = NSLocalizedString(@"Categories", @"");
     headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
@@ -152,24 +152,27 @@
 
     UIImage* rowBackground = [UIImage imageNamed:@"middleRow.png"];
     UIImage* pressedRowBackground = [UIImage imageNamed:@"pressedRow.png"];
-    
-    cell.primaryLabel.text = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"name"];
+    Category* currentCategory = [self.categoriesArray objectAtIndex:indexPath.row];    
+    cell.primaryLabel.text = currentCategory.name;
     cell.subtextLabel.text = @"";
-
-
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString* baseString = @"http://evincel.com";
-        NSString* imageUrl = [[self.categoriesArray objectAtIndex:indexPath.row]valueForKey:@"image"];
-        NSString* srcString = [baseString stringByAppendingString:imageUrl];
+
+        if (!currentCategory.cachedImage) {
+            NSString* baseString = @"http://evincel.com";
+            NSString* imageUrl = currentCategory.image;
+            NSString* srcString = [baseString stringByAppendingString:imageUrl];
+            
+            NSURL *url = [NSURL URLWithString:srcString];
+            NSData *srcData = [NSData dataWithContentsOfURL:url];
+            currentCategory.cachedImage = [[UIImage alloc] initWithData:srcData];
+        }
         
-        NSURL *url = [NSURL URLWithString:srcString];
-        NSData *srcData = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [[UIImage alloc] initWithData:srcData];
-        cell.topicImageView.image = image;
+
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.view setNeedsDisplay];
+            cell.topicImageView.image = currentCategory.cachedImage;
+            [cell setNeedsLayout];
         });
     });
     

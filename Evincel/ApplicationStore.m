@@ -16,11 +16,11 @@ static RKObjectManager* evincelObjectManager;
 
 @implementation ApplicationStore
 +(void)setUpApplicationStore{
-    RKClient* baseClient = [RKClient clientWithBaseURLString:@"http://evincel.com/"];
-    baseClient.username = @"rose";
-    baseClient.password = @"foobar";
+//    RKClient* baseClient = [RKClient clientWithBaseURLString:@"http://evincel.com/"];
+//    baseClient.username = @"rose";
+//    baseClient.password = @"foobar";
     evincelObjectManager = [[RKObjectManager alloc] init];
-    evincelObjectManager.client = baseClient;
+    evincelObjectManager.client = [RKClient sharedClient];
     
     evincelObjectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"applicationStore.sqlite3"];
     
@@ -40,8 +40,7 @@ static RKObjectManager* evincelObjectManager;
     RKManagedObjectMapping* categoryMapping = [RKManagedObjectMapping mappingForClass:[Category class] inManagedObjectStore:evincelObjectManager.objectStore];
     categoryMapping.objectClass = [Category class];
     [categoryMapping mapKeyPath:@"id" toAttribute:@"category_id"];
-    [categoryMapping mapAttributes:@"name", nil];
-    [categoryMapping mapAttributes:@"image", nil];
+    [categoryMapping mapAttributes:@"name", @"image",nil];
     categoryMapping.primaryKeyAttribute = @"category_id";
     
     [evincelObjectManager.mappingProvider addObjectMapping:categoryMapping];
@@ -79,6 +78,7 @@ static RKObjectManager* evincelObjectManager;
     [websiteMapping mapKeyPath:@"id" toAttribute:@"website_id"];
     [websiteMapping mapAttributes:@"page_title", nil];
     [websiteMapping mapAttributes:@"url", nil];
+    [websiteMapping mapAttributes:@"redirect_url", nil];
     [websiteMapping mapAttributes:@"category_id", nil];
     websiteMapping.primaryKeyAttribute = @"website_id";
     
@@ -148,10 +148,26 @@ static RKObjectManager* evincelObjectManager;
         loader.onDidFailLoadWithError = ^(NSError* err) {
             NSLog(@"%@", err);
         };
+        loader.onDidLoadResponse = ^(RKResponse* response){
+            NSLog(@"Response in fetchReviews: %@", response.bodyAsString);
+        };
     }];
 }
-+(void)saveReview:(Review*)review {
-    [evincelObjectManager postObject:review delegate:nil];
++(void)saveReview:(Review*)review with:(void (^)(void))completionBlock {
+//    [evincelObjectManager postObject:review delegate:nil];
+
+    [evincelObjectManager postObject:review usingBlock:^(RKObjectLoader *loader) {
+        loader.objectMapping = [evincelObjectManager.mappingProvider objectMappingForClass:[Review class]];
+        loader.onDidLoadObjects = ^(NSArray* objects){
+            completionBlock();
+        };
+        loader.onDidFailWithError = ^(NSError* error){
+            NSLog(@"%@", error);
+        };
+        loader.onDidLoadResponse = ^(RKResponse* response){
+            NSLog(@"Response in saveReview: %@", response.bodyAsString);
+        };
+    }];
 }
 
 +(void)setupUserMapping {

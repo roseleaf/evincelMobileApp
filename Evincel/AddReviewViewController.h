@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Review.h"
 #import "Website.h"
+#import "WebsiteViewController.h"
 
 @interface AddReviewViewController : UIViewController
 @property (strong) Review* review;
 @property (strong) NSNumber* website_id;
 @property (nonatomic, retain) IBOutlet UITextField* commentLabel;
 @property (strong) NSString* website_title;
-//@property (strong) UI
+@property (weak) WebsiteViewController* websiteListView;
 @end

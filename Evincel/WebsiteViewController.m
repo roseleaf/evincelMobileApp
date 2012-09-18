@@ -25,9 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        if (![RKClient sharedClient].username) {
-            self.signInButton.hidden = YES;
-        }
+
 
         // Custom initialization
     }
@@ -35,9 +33,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if (![RKClient sharedClient].username) {
-        self.signInButton.hidden = YES;
-    }
+
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -120,8 +116,10 @@
     headerLabel.shadowOffset = CGSizeMake(0, 1);
     headerLabel.font = [UIFont boldSystemFontOfSize:22];
     headerLabel.backgroundColor = [UIColor clearColor];
-    
-    headerLabel.text = [NSString stringWithFormat:@"Reviews for %@", self.website.page_title];
+    NSError* error = NULL;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"http.*?//" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSString* shortURL = [regex stringByReplacingMatchesInString:self.website.redirect_url options:0 range:NSMakeRange(0, [self.website.redirect_url length]) withTemplate:@""];
+    headerLabel.text = [NSString stringWithFormat:@"Reviews for %@", shortURL.capitalizedString];
     [header addSubview:headerLabel];
     return header;
 }
@@ -147,9 +145,11 @@
     Review* currentReview = [self.reviews objectAtIndex:indexPath.row];
 
 //    cell.rating.text = currentReview
-    cell.heading.text = currentReview.comment;
-    cell.info.text = currentReview.browser;
+    cell.heading.text = [NSString stringWithFormat:@"%d out of 5", currentReview.rating ];
+    cell.info.text = currentReview.posted_by;
     cell.body.text = currentReview.comment;
+    cell.info.backgroundColor = [UIColor clearColor];
+    cell.body.backgroundColor = [UIColor clearColor];
     
     
     cell.heading.font = [UIFont systemFontOfSize:10];    
@@ -209,10 +209,12 @@
 
 -(void)showLogin{
     LoginViewController* login = [LoginViewController new];
+    login.wesiteListView = self;
     [self.navigationController pushViewController:login animated:YES];
 }
 -(void)addReview{
     AddReviewViewController* arv = [AddReviewViewController new];
+    arv.websiteListView = self;
     arv.website_id = self.website.website_id;
     arv.website_title = self.website.page_title;
     [self.navigationController pushViewController:arv animated:YES];

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebsiteViewController.h"
 
 @interface LoginViewController : UIViewController
 @property (strong) UITextField* usernameField;
 @property (strong) UITextField* passwordField;
+@property (weak) WebsiteViewController* wesiteListView;
 @end

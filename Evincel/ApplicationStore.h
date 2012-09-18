@@ -16,6 +16,6 @@
 +(void)fetchWebsites:(void(^)(void))completionBlock;
 +(void)fetchReviews:(void(^)(void))completionBlock;
 +(NSManagedObjectContext*)context;
-+(void)saveReview:(Review*)review;
++(void)saveReview:(Review*)review with:(void(^)(void))completionBlock;
 +(void)saveUser:(User*)user;
 @end

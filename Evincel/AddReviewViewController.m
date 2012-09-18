@@ -10,6 +10,7 @@
 #import "ReviewFormView.h"
 #import "ApplicationStore.h"
 #import <RestKit/RestKit.h>
+#import "WebsiteViewController.h"
 
 @interface AddReviewViewController () 
 @property (strong)ReviewFormView* formView;
@@ -66,8 +67,10 @@
     [self.review setValue:[RKClient sharedClient].username forKey:@"posted_by"];
     [self.review setValue:@"iOS" forKey:@"platform"];
     NSLog(@"The review:%@", self.review);
-    [ApplicationStore saveReview:self.review];
-    [self.navigationController popViewControllerAnimated:YES];
+    [ApplicationStore saveReview:self.review with:^{
+        [self goBack];
+    }];
+//    [self goBack];
 }
 
 
@@ -78,6 +81,8 @@
 
 
 -(void)goBack{
+    [self.websiteListView refreshReviews];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)toCategories{

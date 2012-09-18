@@ -94,7 +94,7 @@
     [self.view addSubview:self.header];
     UILabel *headerLabel =
     [[UILabel alloc]
-     initWithFrame:CGRectMake(10, 20, 300, 40)];
+     initWithFrame:CGRectMake(10, 60, 300, 40)];
     headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.text = [self.category valueForKey:@"name"];
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];

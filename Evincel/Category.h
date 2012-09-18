@@ -12,4 +12,5 @@
 @property (strong) NSString* name;
 @property (strong) NSString* image;
 @property int category_id;
+@property (strong) UIImage* cachedImage;
 @end

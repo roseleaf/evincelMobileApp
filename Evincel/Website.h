@@ -17,6 +17,7 @@ NSMutableArray* WEBSITES;
 @property (strong) NSString* url;
 @property (strong) UIImage* image;
 @property int category_id;
+@property (strong) NSString* redirect_url;
 @property (strong) NSNumber* website_id;
 @property (strong) NSMutableArray* reviews;
 //-(void)performBlockWithImages:(void (^)(UIImage*)) block;
