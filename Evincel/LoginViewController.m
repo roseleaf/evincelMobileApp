@@ -12,7 +12,7 @@
 #import "SignUpViewController.h"
 #import <RestKit/RestKit.h>
 
-@interface LoginViewController () <RKRequestDelegate>
+@interface LoginViewController () <RKRequestDelegate, UITextFieldDelegate>
 
 @end
 
@@ -43,6 +43,8 @@
     self.passwordField.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"input.png"]];
     self.passwordField.placeholder = @"Password";
     self.passwordField.secureTextEntry = YES;
+    self.passwordField.delegate = self;
+
     [self.view addSubview:self.passwordField];
     UIButton* submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [submitButton addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchDown];
@@ -129,7 +131,11 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.passwordField resignFirstResponder];
+    [self signIn];
+    return NO;
+}
 
 
 @end

@@ -11,7 +11,7 @@
 #import "User.h"
 #import "ApplicationStore.h"
 
-@interface SignUpViewController ()
+@interface SignUpViewController () <UITextFieldDelegate>
 @property (strong)User* user;
 @property (strong)UserFormView* formView;
 @end
@@ -23,6 +23,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.passwordField.delegate = self;
     }
     return self;
 }
@@ -83,5 +84,12 @@
     [self.formView.username resignFirstResponder];
     [self.formView.password resignFirstResponder];
     [self.formView.email resignFirstResponder];
+    [self.formView.password_confirmation resignFirstResponder];
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.formView.password_confirmation resignFirstResponder];
+    [self saveUser];
+    return NO;
+}
+
 @end

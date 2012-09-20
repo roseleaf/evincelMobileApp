@@ -159,7 +159,8 @@
 //    UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
     cell.selectedBackgroundView =cellImageView;
     cell.backgroundView = cellImageView;
-    
+    cell.userInteractionEnabled = NO;
+
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     [self.view setNeedsDisplay];

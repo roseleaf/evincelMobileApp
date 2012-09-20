@@ -134,6 +134,8 @@
         }
         cell.subtextLabel.text = currentSite.url;
         cell.faviconView.image = currentSite.image;
+        cell.faviconView.image = [self getFaviconForSite:currentSite];
+
         
         
     } else {
@@ -148,7 +150,7 @@
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
     cell.backgroundView = cellImageView;
     cell.selectedBackgroundView =pressedImageView;
-    
+
     cell.accessoryType = UITableViewCellAccessoryNone;
     [self.view setNeedsDisplay];
     
@@ -164,6 +166,13 @@
     [self.navigationController pushViewController:websiteView animated:YES];
 }
 
+-(UIImage*)getFaviconForSite:(Website*)website{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http.*?//" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSString* baseDomain = [regex stringByReplacingMatchesInString:website.url options:0 range:NSMakeRange(0, [website.url length]) withTemplate:@""];
+    NSURL* faviconPath = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/s2/favicons?domain=%@", baseDomain]];
+    NSData* data = [NSData dataWithContentsOfURL:faviconPath];
+    return [UIImage imageWithData:data];
+}
 
 -(UIButton*)backButton{
     UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];

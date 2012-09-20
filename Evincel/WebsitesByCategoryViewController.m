@@ -156,14 +156,12 @@
     
     Website* currentSite = [self.websitesArray objectAtIndex:indexPath.row];
     
-    if (currentSite.page_title!=NULL) {
+    if (currentSite.page_title) {
         cell.primaryLabel.text = currentSite.page_title;
     } else {
         cell.primaryLabel.text = currentSite.url;
     }
-    cell.faviconView.image = [self getFaviconForSite:currentSite];    
-        
-
+    cell.faviconView.image = [self getFaviconForSite:currentSite];
     cell.subtextLabel.text = currentSite.url;
     
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -177,7 +175,6 @@
     UIImageView* pressedImageView = [[UIImageView alloc]initWithImage:pressedRowBackground];
     cell.backgroundView = cellImageView;
     cell.selectedBackgroundView =pressedImageView;
-    
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     [self.view setNeedsDisplay];

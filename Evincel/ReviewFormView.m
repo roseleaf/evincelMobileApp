@@ -96,6 +96,7 @@ UILabel* label;
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.commentField resignFirstResponder];
+    
     return NO;
 }
 /*
