@@ -13,4 +13,5 @@
 @property (strong) UITextField* usernameField;
 @property (strong) UITextField* passwordField;
 @property (weak) WebsiteViewController* wesiteListView;
+@property (strong) void(^completionBlock)(void);
 @end

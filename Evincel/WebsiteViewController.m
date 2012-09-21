@@ -95,14 +95,15 @@
     self.signInButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.signInButton addTarget:self action:@selector(showLogin) forControlEvents:UIControlEventTouchDown];
     [self.signInButton setTitle:@"Sign In to Add" forState:UIControlStateNormal];
-    self.signInButton.frame = CGRectMake(185.0, 10.0, 125.0, 40.0);
+    self.signInButton.frame = CGRectMake(188.0, 10.0, 125.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
     [self.signInButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addButton = [self setupAddButton];
+    [header addSubview:self.addButton];
     [header addSubview:self.signInButton];
     
     if ([RKClient sharedClient].username) {
-        [header addSubview:[self addButton]];
         self.signInButton.hidden = YES;
     } else {
         self.signInButton.hidden = NO;
@@ -195,15 +196,15 @@
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(UIButton*)addButton{
-    UIButton* addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addButton addTarget:self action:@selector(addReview) forControlEvents:UIControlEventTouchDown];
-    [addButton setTitle:@"+" forState:UIControlStateNormal];
-    addButton.frame = CGRectMake(275.0, 10.0, 40.0, 40.0);
+-(UIButton*)setupAddButton{
+    self.addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.addButton addTarget:self action:@selector(addReview) forControlEvents:UIControlEventTouchDown];
+    [self.addButton setTitle:@"+" forState:UIControlStateNormal];
+    self.addButton.frame = CGRectMake(270.0, 10.0, 40.0, 40.0);
     UIImage* buttonImage = [UIImage imageNamed:@"buttonShort.png"];
-    [addButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    return addButton;
+    [self.addButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    return self.addButton;
 }
 
 
@@ -211,6 +212,10 @@
 -(void)showLogin{
     LoginViewController* login = [LoginViewController new];
     login.wesiteListView = self;
+    login.completionBlock = ^{self.signInButton.hidden = YES;
+        self.addButton.hidden = NO;
+    };
+    
     [self.navigationController pushViewController:login animated:YES];
 }
 -(void)addReview{

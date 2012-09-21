@@ -12,5 +12,6 @@
 @interface WebsiteViewController : UITableViewController
 @property (strong) Website* website;
 @property (strong) UIButton* signInButton;
+@property (strong) UIButton* addButton;
 -(void)refreshReviews;
 @end

@@ -102,6 +102,7 @@
                     [self showAlert];
                 } else {
                     [self parseRKResponse:response];
+                    self.completionBlock();
                 }
             };
             request.onDidFailLoadWithError = ^(NSError* error){
@@ -109,6 +110,8 @@
             };
         }];
     });
+    
+    
 }
 
 -(void)parseRKResponse:(RKResponse*) response{
