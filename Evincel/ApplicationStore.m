@@ -76,10 +76,8 @@ static RKObjectManager* evincelObjectManager;
     RKManagedObjectMapping* websiteMapping = [RKManagedObjectMapping mappingForClass:[Website class] inManagedObjectStore:evincelObjectManager.objectStore]; //inManagedObjectStore:websiteManager.objectStore];
     websiteMapping.objectClass = [Website class];
     [websiteMapping mapKeyPath:@"id" toAttribute:@"website_id"];
-    [websiteMapping mapAttributes:@"page_title", nil];
-    [websiteMapping mapAttributes:@"url", nil];
-    [websiteMapping mapAttributes:@"redirect_url", nil];
-    [websiteMapping mapAttributes:@"category_id", nil];
+    [websiteMapping mapAttributes:@"page_title",
+     @"url", @"redirect_url", @"category_id", nil];
     websiteMapping.primaryKeyAttribute = @"website_id";
     
     [evincelObjectManager.mappingProvider addObjectMapping:websiteMapping];

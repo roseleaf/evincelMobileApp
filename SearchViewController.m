@@ -13,6 +13,7 @@
 #import "Website.h"
 #import <RestKit/RestKit.h>
 
+
 @interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UISearchBarDelegate>
 @property (strong)NSArray* websitesArray;
 @property (strong)NSString* searchTerm;
@@ -77,6 +78,17 @@
     UIView* header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 200)];;
         header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
     [header addSubview:[self backButton]];
+    UILabel* termLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 300, 22)];
+    termLabel.textAlignment = UITextAlignmentCenter;
+    termLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
+    termLabel.font = [UIFont systemFontOfSize:10];
+    termLabel.backgroundColor = [UIColor clearColor];
+    termLabel.lineBreakMode = UILineBreakModeWordWrap;
+    termLabel.numberOfLines = 0;
+    if (self.searchTerm) {
+        termLabel.text = [NSString stringWithFormat: @"\"%@\" results",self.searchTerm ];
+    }
+    
     UILabel* headerLabel =
     [[UILabel alloc]
      initWithFrame:CGRectMake(10, 20, 300, 40)];
@@ -89,6 +101,7 @@
 
     headerLabel.text = @"Search Evincel";
     [header addSubview:headerLabel];
+    [header addSubview:termLabel];
     
     UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(60, 60, 190, 30)];
     searchBar.delegate = self;

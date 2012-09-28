@@ -24,6 +24,7 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Website" representedClassName="Website" syncable="YES">
+        <attribute name="cachedImage" optional="YES" transient="YES" syncable="YES"/>
         <attribute name="category_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="page_title" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,9 +33,9 @@
         <attribute name="website_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Review" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="Website" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Category" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Review" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Website" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -192,51 +192,6 @@
 }
 
 
-
-
-
-////RestKit Client Grabs the List of Categories:
-//-(void) categoryFetcher {
-////    NSString* model = @"/websites.json?category_id=2";
-////    [[RKClient sharedClient] get:model delegate:self];
-//    RKClient* client = [RKClient clientWithBaseURLString:@"http://evincel.com/"];
-//    [RKClient sharedClient].authenticationType = RKRequestAuthenticationTypeNone
-//    ;
-//    [[RKClient sharedClient] get:@"/categories.json" usingBlock:^(RKRequest* request) {
-//        request.onDidLoadResponse = ^(RKResponse* response){
-//            [self parseRKResponse:response];
-//        };
-//    }];    
-//}
-
-//-(void)parseRKResponse:(RKResponse*)response{
-//    NSArray* parsedResponse = [response parsedBody:nil];
-//    for (NSDictionary* category in parsedResponse){
-//        [categoriesArray addObject:category];
-//    }
-//    
-//    [self.tableView reloadData];
-//
-//}
-//
-//- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-//{
-//    if (request.method == RKRequestMethodGET) {
-//        NSArray* parsedResponse = [response parsedBody:nil];
-//
-//        
-//        for (NSDictionary* category in parsedResponse){
-//            [categoriesArray addObject:category];
-//        }
-//
-//        [self.tableView reloadData];
-//    }
-//}
-
-
-
-
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -249,15 +204,8 @@
     wvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     [self presentModalViewController:navControl animated:YES];
-  
-    
 
 }
-
-
-
-
-
 
 
 

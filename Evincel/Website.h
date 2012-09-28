@@ -20,6 +20,7 @@ NSMutableArray* WEBSITES;
 @property (strong) NSString* redirect_url;
 @property (strong) NSNumber* website_id;
 @property (strong) NSMutableArray* reviews;
+@property (strong) UIImage* cachedImage;
 //-(void)performBlockWithImages:(void (^)(UIImage*)) block;
 
 @end

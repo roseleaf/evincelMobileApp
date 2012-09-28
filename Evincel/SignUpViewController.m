@@ -31,11 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+
     UserFormView* form = [UserFormView new];
     self.formView = form;
     self.view = self.formView;
     
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(receivedTap)];
+    [self.formView addGestureRecognizer:tap];
     UIView* header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, 100)];
     header.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableHeader.png"]];
     [header addSubview:[self backButton]];
@@ -80,7 +82,7 @@
     [RKClient sharedClient].username = nil;
     [RKClient sharedClient].password = nil;
 }
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)receivedTap {
     [self.formView.username resignFirstResponder];
     [self.formView.password resignFirstResponder];
     [self.formView.email resignFirstResponder];

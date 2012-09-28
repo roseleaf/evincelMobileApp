@@ -55,7 +55,7 @@
 
         
         UILabel* passwordConLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 365, 180, 30)];
-        passwordConLabel.text = @"Password:";
+        passwordConLabel.text = @"Confirm it:";
         passwordConLabel.backgroundColor = [UIColor clearColor];
         self.password_confirmation = [[UITextField alloc]initWithFrame:CGRectMake(80, 400, 180, 30)];
         self.password_confirmation.delegate = self;
@@ -73,6 +73,7 @@
         [self addSubview:nameLabel];
         [self addSubview:emailLabel];
         [self addSubview:passwordLabel];
+        [self addSubview:passwordConLabel];
         [self addSubview:self.username];
         [self addSubview:self.email];
         [self addSubview:self.submitButton];

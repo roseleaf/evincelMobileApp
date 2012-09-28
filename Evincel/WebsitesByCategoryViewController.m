@@ -5,7 +5,6 @@
 //  Created by Rose CW on 9/8/12.
 //  Copyright (c) 2012 Rose Trujillo. All rights reserved.
 //
-
 #import "WebsitesByCategoryViewController.h"
 #import "WebsiteViewController.h"
 #import "CategoryCell.h"
@@ -67,7 +66,6 @@
 
 -(NSArray*)selectWebsites{
     NSManagedObjectContext* thisContext = [ApplicationStore context];
-    
     NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Website" inManagedObjectContext:thisContext];
     NSFetchRequest* request = [[NSFetchRequest alloc]init];
     [request setEntity:entityDescription];
@@ -161,7 +159,19 @@
     } else {
         cell.primaryLabel.text = currentSite.url;
     }
-    cell.faviconView.image = [self getFaviconForSite:currentSite];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        if (!currentSite.cachedImage) {
+            currentSite.cachedImage = [self getFaviconForSite:currentSite];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.faviconView.image = currentSite.cachedImage;
+            [cell setNeedsLayout];
+        });
+        
+    });
+
+
     cell.subtextLabel.text = currentSite.url;
     
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

@@ -38,6 +38,9 @@
     [[UILabel alloc]
      initWithFrame:CGRectMake(10, 60, 300, 40)];
     
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(receivedTap)];
+    [self.formView addGestureRecognizer:tap];
+    
     headerLabel.textAlignment = UITextAlignmentCenter;
     headerLabel.textColor = [UIColor colorWithRed:187 green:169 blue:171 alpha:1.0];
     headerLabel.shadowColor = [UIColor brownColor];
@@ -73,11 +76,10 @@
 //    [self goBack];
 }
 
-
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)receivedTap{
     [self.formView.commentField resignFirstResponder];
 }
+
 
 
 -(void)goBack{
