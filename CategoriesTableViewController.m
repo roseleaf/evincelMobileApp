@@ -21,6 +21,8 @@
 @property NSArray* categoriesArray;
 @property UIImageView* header;
 @property UIButton* backButton;
+@property UIButton* addButton;
+@property UIButton* signInButton;
 @end
 
 
@@ -112,7 +114,34 @@
     self.backButton = backButton;
     [view addSubview:self.backButton];
     
+    UIButton* addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addButton addTarget:self action:@selector(dismissToHome) forControlEvents:UIControlEventTouchDown];
+    [addButton setTitle:@"Add Website" forState:UIControlStateNormal];
+    addButton.frame = CGRectMake(188.0, 10.0, 125.0, 40.0);
+    [addButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
+    self.addButton = addButton;
+    [view addSubview:self.addButton];
+    
+    
+    UIButton* signInButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [signInButton addTarget:self action:@selector(dismissToHome) forControlEvents:UIControlEventTouchDown];
+    [signInButton setTitle:@"Sign in to Add" forState:UIControlStateNormal];
+    signInButton.frame = CGRectMake(188.0, 10.0, 125.0, 40.0);
+    [signInButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signInButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    self.signInButton = signInButton;
+    [view addSubview:self.signInButton];
+    
+    if ([RKClient sharedClient].username) {
+        self.signInButton.hidden = YES;
+    } else {
+        self.signInButton.hidden = NO;
+    }
     
     return view;
 }

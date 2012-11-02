@@ -1,0 +1,1 @@
+Evincel, at http://evincel.com is a website review platform built on Rails 3 and a work in progress. This mobile app allows you to access most of evincel's API, and has a local data storage to maintain functionality when disconnected. With the mobile app you can create a user, search for websites and reviews, and create reviews. See http://nativeobject.com/ios for more info.

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05EDAFF1A484444891594CF2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F71361708474F2D9D7D87AD /* libPods.a */; };
+		9612F311161B5B6000A086C8 /* AddWebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9612F310161B5B6000A086C8 /* AddWebsiteViewController.m */; };
+		9612F315161B5C5800A086C8 /* WebsiteFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9612F314161B5C5800A086C8 /* WebsiteFormView.m */; };
 		961594491605A130008482E2 /* input.png in Resources */ = {isa = PBXBuildFile; fileRef = 961594481605A130008482E2 /* input.png */; };
 		9615945316062D08008482E2 /* shadowbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9615945216062D08008482E2 /* shadowbar.png */; };
 		96159456160696EC008482E2 /* preview11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 96159455160696EC008482E2 /* preview11.jpeg */; };
@@ -57,6 +59,10 @@
 /* Begin PBXFileReference section */
 		2F71361708474F2D9D7D87AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43981B42E9EF4343BE3D19B3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		9612F30F161B5B6000A086C8 /* AddWebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWebsiteViewController.h; sourceTree = "<group>"; };
+		9612F310161B5B6000A086C8 /* AddWebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWebsiteViewController.m; sourceTree = "<group>"; };
+		9612F313161B5C5800A086C8 /* WebsiteFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteFormView.h; sourceTree = "<group>"; };
+		9612F314161B5C5800A086C8 /* WebsiteFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteFormView.m; sourceTree = "<group>"; };
 		961594481605A130008482E2 /* input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = input.png; path = evincelAssets/input.png; sourceTree = "<group>"; };
 		9615945216062D08008482E2 /* shadowbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadowbar.png; sourceTree = "<group>"; };
 		96159455160696EC008482E2 /* preview11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = preview11.jpeg; sourceTree = "<group>"; };
@@ -238,6 +244,8 @@
 				96BEE86315FEA2E2008E74E7 /* WebsiteViewController.m */,
 				965A60A515FAB486000DF824 /* SearchViewController.h */,
 				965A60A615FAB486000DF824 /* SearchViewController.m */,
+				9612F30F161B5B6000A086C8 /* AddWebsiteViewController.h */,
+				9612F310161B5B6000A086C8 /* AddWebsiteViewController.m */,
 				96BEE8A316013DFF008E74E7 /* LoginViewController.h */,
 				96BEE8A416013DFF008E74E7 /* LoginViewController.m */,
 				96BEE8C516039D8E008E74E7 /* AddReviewViewController.h */,
@@ -269,6 +277,8 @@
 		96BEE89C1600198E008E74E7 /* View Elements */ = {
 			isa = PBXGroup;
 			children = (
+				9612F313161B5C5800A086C8 /* WebsiteFormView.h */,
+				9612F314161B5C5800A086C8 /* WebsiteFormView.m */,
 				96BEE91016056CD2008E74E7 /* ReviewFormView.h */,
 				96BEE91116056CD2008E74E7 /* ReviewFormView.m */,
 				9615945D1606AB79008482E2 /* UserFormView.h */,
@@ -399,6 +409,8 @@
 				961594591606A50A008482E2 /* SignUpViewController.m in Sources */,
 				9615945C1606A9D6008482E2 /* User.m in Sources */,
 				9615945F1606AB79008482E2 /* UserFormView.m in Sources */,
+				9612F311161B5B6000A086C8 /* AddWebsiteViewController.m in Sources */,
+				9612F315161B5C5800A086C8 /* WebsiteFormView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
